@@ -213,7 +213,7 @@ brew install chromedriver
 
 [Google chromedriver](https://chromedriver.chromium.org/downloads)
 
-6. run robot framework
+5. run robot framework
 
 ```
 
