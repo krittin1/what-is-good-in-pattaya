@@ -123,6 +123,10 @@
   },
   "defaultProject": "my-app",
   "cli": {
+<<<<<<< HEAD
     "analytics": false
+=======
+    "analytics": "c38b8ea5-b575-4952-9322-83f24d511ef1"
+>>>>>>> 5ec19f83440ed1392acaaddbb04037c7d4b37f25
   }
 }
