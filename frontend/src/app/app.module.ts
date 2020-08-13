@@ -11,10 +11,14 @@ import { EditComponent } from './edit/edit.component';
 import { HistoryComponent } from './history/history.component';
 import { FormComponent } from './form/form.component';
 import { SubmitComponent } from './submit/submit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
+
 
     NavComponent,
     LoginComponent,
@@ -23,8 +27,9 @@ import { SubmitComponent } from './submit/submit.component';
     HistoryComponent,
     FormComponent,
     SubmitComponent,
+    
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatSliderModule,MatCardModule],
   providers: [],
   bootstrap: [AppComponent],
 })
