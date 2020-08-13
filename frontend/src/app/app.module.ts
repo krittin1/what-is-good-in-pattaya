@@ -9,15 +9,18 @@ import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { EditComponent } from './edit/edit.component';
 import { HistoryComponent } from './history/history.component';
-
+import { FormComponent } from './form/form.component';
+import { SubmitComponent } from './submit/submit.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
+
     LoginComponent,
     MenuComponent,
     EditComponent,
     HistoryComponent,
+    FormComponent,
+    SubmitComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
