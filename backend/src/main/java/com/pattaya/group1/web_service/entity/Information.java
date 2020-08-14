@@ -3,33 +3,21 @@ package com.pattaya.group1.web_service.entity;
 public class Information {
     private String firstName;
     private String lastName;
-    private String address;
-    private String postCode;
+    private Address address;
     private String dateOfBirth;
     private String phoneNumber;
     private String position;
     private String startDate;
     private String identityCardNo;
 
-    public Information(String firstName, String lastName, String address, String postCode, String dateOfBirth, String phoneNumber, String position, String startDate, String identityCardNo) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
         this.address = address;
-        this.postCode = postCode;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
-        this.position = position;
-        this.startDate = startDate;
-        this.identityCardNo = identityCardNo;
     }
 
-    public String getPostCode() {
-        return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -47,13 +35,6 @@ public class Information {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getDateOfBirth() {
         return dateOfBirth;
@@ -101,7 +82,7 @@ public class Information {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", dataOfBirth='" + dateOfBirth + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", position='" + position + '\'' +
                 ", startDate='" + startDate + '\'' +

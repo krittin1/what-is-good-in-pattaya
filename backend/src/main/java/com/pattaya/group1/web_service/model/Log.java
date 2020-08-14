@@ -3,15 +3,24 @@ package com.pattaya.group1.web_service.model;
 public class Log {
     private String message;
     private String adminId;
-    private String adminUser;
     private Object object;
-    private String timeStamp;
+    private String timestamp;
 
-    public Log(String message, String adminId, String adminUser, Object object) {
+    public Log(String message, String adminId, Object object, String timestamp) {
         this.message = message;
         this.adminId = adminId;
-        this.adminUser = adminUser;
         this.object = object;
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "message='" + message + '\'' +
+                ", adminId='" + adminId + '\'' +
+                ", object=" + object +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 
 
@@ -31,13 +40,6 @@ public class Log {
         this.adminId = adminId;
     }
 
-    public String getAdminUser() {
-        return adminUser;
-    }
-
-    public void setAdminUser(String adminUser) {
-        this.adminUser = adminUser;
-    }
 
     public Object getObject() {
         return object;
@@ -47,11 +49,11 @@ public class Log {
         this.object = object;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

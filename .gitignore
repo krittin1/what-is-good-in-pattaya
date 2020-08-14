@@ -1,1 +1,4 @@
 test/e2e/chromedriver.exe
+log.html
+output.xml
+report.html
