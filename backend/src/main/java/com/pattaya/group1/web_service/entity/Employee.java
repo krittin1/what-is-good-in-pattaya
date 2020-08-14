@@ -5,6 +5,7 @@ public class Employee {
     private String userId;
     private String role;
     private String status;
+    private Information information;
 
     public String getUserId() {
         return userId;
@@ -37,8 +38,6 @@ public class Employee {
     public void setInformation(Information information) {
         this.information = information;
     }
-
-    private Information information;
 
     @Override
     public String toString() {

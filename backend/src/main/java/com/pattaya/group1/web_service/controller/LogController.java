@@ -54,10 +54,10 @@ public class LogController {
                             changeLog.getAction(),
                             employee.getUserId(),
                             changeLog.getLogId(),
-                            employee.getFirstName(),
-                            employee.getLastName(),
-                            employee.getIdentityCardNo(),
-                            employee.getPostCode()
+                            employee.getInformation().getFirstName(),
+                            employee.getInformation().getLastName(),
+                            employee.getInformation().getIdentityCardNo(),
+                            employee.getInformation().getPostCode()
                             )
             ));
         }

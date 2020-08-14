@@ -4,11 +4,20 @@ public class Information {
     private String firstName;
     private String lastName;
     private String address;
+    private String postCode;
     private String dataOfBirth;
     private String phoneNumber;
     private String position;
     private String startDate;
     private String identityCardNo;
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
 
     public String getFirstName() {
         return firstName;

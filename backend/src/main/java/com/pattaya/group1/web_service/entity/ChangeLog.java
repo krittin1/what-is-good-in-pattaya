@@ -56,4 +56,16 @@ public class ChangeLog {
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
+
+    @Override
+    public String toString() {
+        return "ChangeLog{" +
+                "logId='" + logId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", action='" + action + '\'' +
+                ", adminId='" + adminId + '\'' +
+                ", message='" + message + '\'' +
+                ", timeStamp='" + timeStamp + '\'' +
+                '}';
+    }
 }
