@@ -3,21 +3,21 @@ package com.pattaya.group1.web_service.entity;
 public class Information {
     private String firstName;
     private String lastName;
-    private String address;
-    private String postCode;
-    private String dataOfBirth;
+    private Address address;
+    private String dateOfBirth;
     private String phoneNumber;
     private String position;
     private String startDate;
     private String identityCardNo;
 
-    public String getPostCode() {
-        return postCode;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setAddress(Address address) {
+        this.address = address;
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -35,20 +35,13 @@ public class Information {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDataOfBirth() {
-        return dataOfBirth;
-    }
-
-    public void setDataOfBirth(String dataOfBirth) {
-        this.dataOfBirth = dataOfBirth;
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getPhoneNumber() {
@@ -89,7 +82,7 @@ public class Information {
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", dataOfBirth='" + dataOfBirth + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", position='" + position + '\'' +
                 ", startDate='" + startDate + '\'' +

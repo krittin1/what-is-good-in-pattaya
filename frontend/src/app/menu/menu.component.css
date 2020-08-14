@@ -27,6 +27,7 @@
       .example-button-row {
         display: table-cell;
         width: 490px;
+        text-align: center;
       }
       
       .example-button-row .mat-button-base {
@@ -44,3 +45,6 @@
         justify-content: center;
         width: 120px;
       }
+
+
+.menu-btn {width: 100%;}     
