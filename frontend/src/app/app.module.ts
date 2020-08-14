@@ -14,6 +14,7 @@ import { SubmitComponent } from './submit/submit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule} from '@angular/material/card';
+import { MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import { MatCardModule} from '@angular/material/card';
     SubmitComponent,
     
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, MatSliderModule,MatCardModule],
+  imports: [BrowserModule, 
+    AppRoutingModule, 
+    BrowserAnimationsModule, 
+    MatSliderModule,
+    MatCardModule,
+    MatButtonModule],
+    
   providers: [],
   bootstrap: [AppComponent],
 })
