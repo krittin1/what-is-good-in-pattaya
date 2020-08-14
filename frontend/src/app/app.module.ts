@@ -15,6 +15,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule} from '@angular/material/card';
 import { MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +40,10 @@ import { MatButtonModule} from '@angular/material/button';
     BrowserAnimationsModule, 
     MatSliderModule,
     MatCardModule,
-    MatButtonModule],
+    MatButtonModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatInputModule],
     
   providers: [],
   bootstrap: [AppComponent],
