@@ -14,6 +14,7 @@ public class Log {
         this.object = object;
     }
 
+
     public String getMessage() {
         return message;
     }
