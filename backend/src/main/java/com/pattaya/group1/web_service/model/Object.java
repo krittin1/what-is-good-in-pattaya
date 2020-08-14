@@ -3,20 +3,18 @@ package com.pattaya.group1.web_service.model;
 public class Object {
     private String action;
     private String userId;
-    private String formId;
     private String name;
     private String surname;
     private String idCard;
-    private String postCode;
+    private String postcode;
 
-    public Object(String action, String userId, String formId, String name, String surname, String idCard, String postCode) {
+    public Object(String action, String userId, String name, String surname, String idCard, String postCode) {
         this.action = action;
         this.userId = userId;
-        this.formId = formId;
         this.name = name;
         this.surname = surname;
         this.idCard = idCard;
-        this.postCode = postCode;
+        this.postcode = postCode;
     }
 
 
@@ -28,12 +26,12 @@ public class Object {
         this.idCard = idCard;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getAction() {
@@ -52,13 +50,6 @@ public class Object {
         this.userId = userId;
     }
 
-    public String getFormId() {
-        return formId;
-    }
-
-    public void setFormId(String formId) {
-        this.formId = formId;
-    }
 
     public String getName() {
         return name;
