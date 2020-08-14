@@ -18,6 +18,7 @@ public class Object {
     }
 
 
+
     public String getIdCard() {
         return idCard;
     }
@@ -65,5 +66,17 @@ public class Object {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    @Override
+    public String toString() {
+        return "Object{" +
+                "action='" + action + '\'' +
+                ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", postcode='" + postcode + '\'' +
+                '}';
     }
 }
