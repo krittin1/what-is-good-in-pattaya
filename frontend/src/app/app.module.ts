@@ -11,7 +11,8 @@ import { EditComponent } from './edit/edit.component';
 import { HistoryComponent } from './history/history.component';
 import { FormComponent } from './form/form.component';
 import { SubmitComponent } from './submit/submit.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,12 @@ import { SubmitComponent } from './submit/submit.component';
     FormComponent,
     SubmitComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
