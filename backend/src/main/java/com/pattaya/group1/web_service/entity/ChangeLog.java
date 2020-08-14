@@ -2,29 +2,13 @@ package com.pattaya.group1.web_service.entity;
 
 
 public class ChangeLog {
-    private String logId;
     private String userId;
     private String action;
     private String adminId;
     private String message;
-    private String timeStamp;
+    private String timestamp;
 
-    public ChangeLog(String logId, String userId, String action, String adminId, String message, String timeStamp) {
-        this.logId = logId;
-        this.userId = userId;
-        this.action = action;
-        this.adminId = adminId;
-        this.message = message;
-        this.timeStamp = timeStamp;
-    }
 
-    public String getLogId() {
-        return logId;
-    }
-
-    public void setLogId(String logId) {
-        this.logId = logId;
-    }
 
     public String getUserId() {
         return userId;
@@ -58,23 +42,22 @@ public class ChangeLog {
         this.message = message;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getTimestamp() {
+        return timestamp;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     @Override
     public String toString() {
         return "ChangeLog{" +
-                "logId='" + logId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", action='" + action + '\'' +
                 ", adminId='" + adminId + '\'' +
                 ", message='" + message + '\'' +
-                ", timeStamp='" + timeStamp + '\'' +
+                ", timeStamp='" + timestamp + '\'' +
                 '}';
     }
 }
