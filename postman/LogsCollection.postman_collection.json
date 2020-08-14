@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fac1054f-3600-4cb3-9d7b-c078aa8c7218",
+		"_postman_id": "e1761bfa-3e1e-4448-8595-c4c70a65c12d",
 		"name": "LogsCollection",
 		"description": "This is a collection for testing pattaya web service api\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "50990338-ec12-4315-8cc8-0384d40b048d",
+						"id": "5d87f03d-1e59-4ccb-bc0f-8e570c05e3c1",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var firstLog = jsonData.logs[0];",
@@ -56,14 +56,6 @@
 							"        pm.expect(firstLog.object.userId).to.eql(data['userId']); ",
 							"    }",
 							"})",
-							"",
-							"pm.test(\"Logs returned by the server must be sorted chronologically\", () => {",
-							"",
-							"})",
-							"",
-							"",
-							"",
-							"",
 							""
 						],
 						"type": "text/javascript"
@@ -101,7 +93,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "47f80d1f-8c08-4e32-b29a-0a83228e7242",
+						"id": "36957422-5720-44af-9f49-1f87e1cfe3c8",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
@@ -127,6 +119,84 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c941e914-cead-487f-b901-14f831724808",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(`${data[\"userId\"]} user deleted`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35834f88-9394-4ad1-a304-0027fdcfcdae",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(`${data[\"userId\"]} user updated`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:8080/api/v1/user",
 					"protocol": "http",
