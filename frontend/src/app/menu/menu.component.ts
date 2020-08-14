@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-menu',
@@ -11,5 +13,14 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  imports: [
+    MatButtonModule,
+    MatCardModule
+  ]
+    
+  
+
+
 
 }
