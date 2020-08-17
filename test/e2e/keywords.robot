@@ -73,7 +73,8 @@ Click Submit Button
 
 Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
-    Table Should Contain    id: table_history    ${MESSAGE}
+    # Table Should Contain    id: table_history    ${MESSAGE}
+    Wait Until Element Contains    id: table_history    ${MESSAGE}
     Table Cell Should Contain    id: table_history    row=2    column=2    ${ADMIN_ID}
     Table Cell Should Contain    id: table_history    row=2    column=3    ${ADMIN_USER}
     Table Cell Should Contain    id: table_history    row=2    column=4    ${ACTION}
