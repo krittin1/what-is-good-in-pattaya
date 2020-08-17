@@ -5,86 +5,96 @@
   <div class="div2">
     <mat-card>
       <div class="form-card">
-        <form class="example-form">
+        <form class="example-form" [formGroup]="addForm">
           <mat-form-field class="example-full-width">
             <mat-label>Allianz technoligy</mat-label>
             <input matInput disabled value="Form" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>User ID</mat-label>
-            <input matInput id="user_id" />
+            <input matInput id="user_id" formControlName="userId">
           </mat-form-field>
           <table class="example-full-width" cellspacing="0">
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>First name</mat-label>
-                  <input matInput id="firstname" />
+                  <input matInput id="firstname"  formControlName="name">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>Last Name </mat-label>
-                  <input matInput id="lastname" />
+                  <input matInput id="lastname"  formControlName="surname">
                 </mat-form-field>
               </td>
             </tr>
           </table>
           <p>
             <mat-form-field class="example-full-width">
-              <mat-label>ID Card</mat-label>
-              <input matInput id="id_card" />
+              <mat-label>ID card</mat-label>
+              <input matInput id="id_card" formControlName="idCard"/>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Date of birth</mat-label>
-              <input matInput id="date_of_birth" />
+              <input matInput id="date_of_birth" formControlName="dateOfBirth"/>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Position</mat-label>
-              <input matInput id="position" />
+              <input matInput id="position" formControlName="position" />
             </mat-form-field>
           </p>
           <form class="example-form">
             <mat-form-field class="example-full-width">
               <mat-label>Telephone</mat-label>
               <span matPrefix>+66 &nbsp;</span>
-              <input id="phone_number" type="tel" matInput placeholder="" />
+              <input id="phone_number" matInput placeholder="" formControlName="phoneNumber"/>
               <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
             </mat-form-field>
           </form>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Address 1</mat-label>
-              <textarea matInput id="address"></textarea>
+              <textarea matInput id="address" formControlName="address"></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Post code</mat-label>
-              <input matInput id="post_code" />
+              <textarea matInput id="post_code" formControlName="postcode"></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Start date</mat-label>
-              <textarea matInput id="start_date"></textarea>
+              <textarea matInput id="start_date" formControlName="startDate"></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Message</mat-label>
-              <input matInput id="message" />
+              <input matInput id="message" formControlName="message"/>
             </mat-form-field>
           </p>
         </form>
       </div>
     </mat-card>
     <div class="submit-component">
-      <app-submit></app-submit>
+      <!-- <button (click)="debug()">TEST</button> -->
+
+      <button
+      class="submit-btn"
+      mat-raised-button
+      color="primary"
+      (click)="debug()">
+      Submit Test
+      </button>
+
+      <!-- <app-submit ></app-submit> -->
     </div>
   </div>
 </div>
