@@ -19,19 +19,19 @@ Edit Employee's Information
     Click Login Button
     Change To Action Page
     Click Edit Button
-    Show Employee's Info That Want To Edit    ${USER_ID}    ${NAME}    ${ID_CARD}
+    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}
     Edit Employee's Info    ${SURNAME}    ${MESSAGE}
     Click Save Button
     Change To History Page   ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Close Form Browser
     
-delete
+Delete Employee's Information
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${ACTION}    ${USER_ID}    ${FORM_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}    ${DATE_OF_BIRTH}    ${POSITION}    ${PHONE_NUMBER}    ${ADDRESS}    ${START_DATE}    ${POST_CODE}    ${ID_CARD}
     Open Form Browser Using Google Chrome
     Click Login Button
     Change To Action Page
     Click Delete Button
-    Show Employee's Info That Want To Delete    ${USER_ID}    ${NAME}    ${ID_CARD}
+    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}
     Click Delete Button To Confirm
     Change To History Page    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Close Form Browser
@@ -74,17 +74,18 @@ Click Submit Button
 Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Table Should Contain    id: table_history    ${MESSAGE}
-    Table Cell Should Contain    row=2    column=2    ${ADMIN_ID}
-    Table Cell Should Contain    row=2    column=3    ${ADMIN_USER}
-    Table Cell Should Contain    row=2    column=4    ${ACTION}
-    Table Cell Should Contain    row=2    column=5    ${USER_ID}
-    Table Cell Should Contain    row=2    column=6    ${NAME}    ${SURNAME}
-    Table Cell Should Contain    row=2    column=8    ${MESSAGE}
+    # Wait Until Page Contains Element    id: table_history    
+    Get Table Cell    id: table_history1    2    2    ${ADMIN_ID}  
+    Get Table Cell    id: table_history1    2    3    ${ADMIN_USER}  
+    Get Table Cell    id: table_history1    2    4    ${ACTION}
+    Get Table Cell    id: table_history1    2    5    ${USER_ID}
+    Get Table Cell    id: table_history1    2    6    ${NAME}
+    Get Table Cell    id: table_history1    2    8    ${MESSAGE}
 
 Click Edit Button
     Click Button    id: edit_btn
 
-Show Employee's Info That Want To Edit
+Check If Employee's Info Appears
     [Arguments]    ${USER_ID}    ${NAME}    ${ID_CARD}
     Wait Until Element Contains    id: user_id    ${USER_ID}
     Wait Until Element Contains    id: firstname    ${NAME} 
@@ -103,17 +104,5 @@ Click Save Button
 Click Delete Button
     Click Button    id: delete_btn
 
-Show Employee's Info That Want To Delete
-    [Arguments]    ${USER_ID}    ${NAME}    ${ID_CARD}
-    Wait Until Element Contains    id: user_id    ${USER_ID}
-    Wait Until Element Contains    id: firstname    ${NAME} 
-    Wait Until Element Contains    id: id_card    ${ID_CARD}
-
 Click Delete Button To Confirm
     Click Button    id: delete_btn
-
-Show add page work message
-    Wait Until Page Contains    form works!
-
-Show edit page work message
-    Wait Until Page Contains    edit works!

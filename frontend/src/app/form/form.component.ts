@@ -18,16 +18,16 @@ export class FormComponent implements OnInit {
   object: Object;
 
   public addForm = new FormGroup({
-    userId: new FormControl(''),
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    idCard: new FormControl(''),
-    postcode: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    position: new FormControl(''),
-    startDate: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    address: new FormControl(''),
+    userId: new FormControl('Nattawitjan'),
+    name: new FormControl('Nattawit'),
+    surname: new FormControl('Janjaroen'),
+    idCard: new FormControl('1111111111111'),
+    postcode: new FormControl('10200'),
+    dateOfBirth: new FormControl('27/09/1995'),
+    position: new FormControl('Junior Backend Developer'),
+    startDate: new FormControl('01/07/2020'),
+    phoneNumber: new FormControl('0824933423'),
+    address: new FormControl('Bangkok'),
 
   });
 
@@ -35,10 +35,10 @@ export class FormComponent implements OnInit {
 
   debug() {
     this.form = new Form(
-      'lol',
-      '414434',
-      'fdsafds',
-      new Object("Active",
+      'New Employee added',
+      '251195',
+      'chatchanokwon',
+      new Object("Add",
       this.addForm.get('userId').value,
       this.addForm.get('name').value,
       this.addForm.get('surname').value,
@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
       this.addForm.get('phoneNumber').value,
       this.addForm.get('address').value
       ),
-      '2431434312'
+      '11/08/2020 11.20 A.M.'
     )
     // this.object = new Object("Active",
     //   this.addForm.get('userId').value,
