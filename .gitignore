@@ -3,3 +3,4 @@ log.html
 output.xml
 report.html
 test/e2e/selenium-screenshot-*
+test/e2e/debug.log
