@@ -1,9 +1,11 @@
 package com.pattaya.group1.web_service.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 
 public class Employee {
+    @JsonIgnore
     @Id
     private String id;
     private String userId;
@@ -29,9 +31,6 @@ public class Employee {
         this.information = information;
     }
 
-    public Employee(Employee employee) {
-        this(employee.userId, employee.role, employee.status, employee.information);
-    }
 
     public String getUserId() {
         return userId;
