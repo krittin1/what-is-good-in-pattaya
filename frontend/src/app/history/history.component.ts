@@ -97,7 +97,7 @@ export class HistoryComponent implements OnInit {
 
   constructor() {
     // Create 100 users
-    const users = Array.from({ length: 100 }, (_, k) => createNewUser(k + 1));
+    const users = Array.from({ length: 1 }, (_, k) => createNewUser(k + 1));
 
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(users);
@@ -131,12 +131,12 @@ function createNewUser(id: number): UserData {
   const date1 = day.getDay() + '/' + day.getMonth() + '/' + day.getFullYear();
   return {
     formId: id.toString(),
-    adminId: Math.round(Math.random() * 100).toString(),
-    adminName: adminName,
-    action: ACTION[Math.round(Math.random() * (ACTION.length - 1))],
-    userId: Math.round(Math.random() * 100).toString(),
-    name: NAMES[Math.round(Math.random() * (NAMES.length - 1))],
+    adminId: '251195',
+    adminName: 'chatchanokwon',
+    action: 'Added',
+    userId: 'nattawitjan',
+    name: 'Nattawit',
     timeStamp: date1,
-    message: MESSAGE[Math.round(Math.random() * (MESSAGE.length - 1))],
+    message: 'New Employee Added',
   };
 }
