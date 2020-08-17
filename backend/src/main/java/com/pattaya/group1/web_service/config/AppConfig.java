@@ -15,6 +15,7 @@ public class AppConfig {
 
     public @Bean
     MongoClient mongoClient() {
+        mongoPassword = "ppp12345";
         return MongoClients.create("mongodb+srv://natthawitjan:"+ mongoPassword + "@cluster0.43gan.gcp.mongodb.net/mydatabase?retryWrites=true&w=majority");
     }
 
