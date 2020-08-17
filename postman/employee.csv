@@ -1,0 +1,10 @@
+userId,role,status,information.firstName,information.lastName,information.address.currentAddress,information.address.postcode,information.dateOfBirth,information.phoneNumber,information.position,information.startDate,information.identityCardNo
+1,employee,ACTIVE,Natthawit,Janjaroen,Bangkok,10110,27/09/1995,0824933423,Junior Backend Developer,1/7/2020,5327899245791
+2,admin,ACTIVE,Chatchanok,Wongsamang,Samutprakarn,10130,19/01/1998,0909750050,Junior Quality Assurance,1/7/2018,1977283805846
+3,admin,ACTIVE,Phison,Khankhang,Bangkok,10120,19/03/1998,0949249956,Junior Backend Developer,2/7/2018,7663163271045
+4,admin,ACTIVE,Ekkarat,Promrit,Bangkok,10140,19/04/1997,0918235128,Junior Frontend Developer,2/7/2018,4432711257957
+5,employee,ACTIVE,Phatthanan,Rittichai,Phichit,10150,21/04/1998,0946420055,Junior Frontend Developer,1/7/2020,9318848000946
+6,employee,ACTIVE,Veeraphat,Amornsirikul,Bangkok,10160,11/10/1997,0953569497,Junior Backend Developer,1/7/2020,8145913969533
+7,employee,ACTIVE,Thanawadee,Tithada,Uttaradit,10170,15/11/1997,0826373517,Junior Frontend Developer,1/7/2020,4742731148817
+8,employee,ACTIVE,Jiraporn,Kanhasinwattana,Lampang,10180,11/3/1997,0918581202,Junior Frontend Developer,1/7/2020,1082324102603
+9,employee,ACTIVE,Krittin,Kanokwilairat,Bangkok,10190,11/1/1998,0648249025,Junior Frontend Developer,1/7/2020,3672500804490
