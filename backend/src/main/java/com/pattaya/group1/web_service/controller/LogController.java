@@ -36,45 +36,47 @@ public class LogController {
         // create new user
         System.out.println(log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
-        if(employee.getUserId() != null){
-            return ResponseEntity.status(409).body(String.format("%s user already exist", log.getObject().getUserId()));
+        if(employee != null){
+            employeeRepository.deleteByUserId(log.getObject().getUserId());
+            //return ResponseEntity.status(409).body(String.format("%s user already exist", log.getObject().getUserId()));
         }
-        else{
-            employee.setRole("Employee");
-            employee.setStatus("ACTIVE");
+        //else{
+        employee = new Employee();
+        employee.setRole("Employee");
+        employee.setStatus("ACTIVE");
 
-            Object object = log.getObject();
-            employee.setUserId(object.getUserId());
+        Object object = log.getObject();
+        employee.setUserId(object.getUserId());
 
-            Information information = new Information();
-            information.setDateOfBirth(object.getDateOfBirth());
-            information.setFirstName(object.getName());
-            information.setLastName(object.getSurname());
-            information.setIdentityCardNo(object.getIdCard());
-            information.setPhoneNumber(object.getPhoneNumber());
-            information.setPosition(object.getPosition());
-            information.setStartDate(object.getStartDate());
-            employee.setInformation(information);
+        Information information = new Information();
+        information.setDateOfBirth(object.getDateOfBirth());
+        information.setFirstName(object.getName());
+        information.setLastName(object.getSurname());
+        information.setIdentityCardNo(object.getIdCard());
+        information.setPhoneNumber(object.getPhoneNumber());
+        information.setPosition(object.getPosition());
+        information.setStartDate(object.getStartDate());
+        employee.setInformation(information);
 
-            Address address = new Address();
-            address.setCurrentAddress(object.getAddress());
-            address.setPostcode(object.getPostcode());
+        Address address = new Address();
+        address.setCurrentAddress(object.getAddress());
+        address.setPostcode(object.getPostcode());
 
-            information.setAddress(address);
-            // Save the employee first;
-            employeeRepository.save(employee);
+        information.setAddress(address);
+        // Save the employee first;
+        employeeRepository.save(employee);
 
-            ChangeLog changeLog = new ChangeLog();
-            changeLog.setAction(object.getAction());
-            changeLog.setAdminId(log.getAdminId());
-            changeLog.setMessage(log.getMessage());
-            changeLog.setTimestamp(log.getTimestamp());
-            changeLog.setUserId(object.getUserId());
+        ChangeLog changeLog = new ChangeLog();
+        changeLog.setAction(object.getAction());
+        changeLog.setAdminId(log.getAdminId());
+        changeLog.setMessage(log.getMessage());
+        changeLog.setTimestamp(log.getTimestamp());
+        changeLog.setUserId(object.getUserId());
 
-            changeLogRepository.save(changeLog);
-            // Create new Log
-            return ResponseEntity.status(201).body(String.format("%s user added", log.getObject().getUserId()));
-        }
+        changeLogRepository.save(changeLog);
+        // Create new Log
+        return ResponseEntity.status(201).body(String.format("%s user added", log.getObject().getUserId()));
+        //}
     }
 
     @PutMapping("/user")
@@ -84,6 +86,7 @@ public class LogController {
 
     @DeleteMapping("/user/{id}")
     public String deleteUser(@RequestParam String id) {
+        employeeRepository.deleteById(id);
         return "Delete";
     }
 
