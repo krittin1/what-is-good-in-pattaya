@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "e8879847-e842-4db9-ba0e-6d62c1affb70",
-		"name": "LogsCollection",
+		"_postman_id": "ccf880e0-6a39-4842-a952-637bd4da9f30",
+		"name": "LogsCollection Copy",
 		"description": "This is a collection for testing pattaya web service api\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,7 +12,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a2be0d54-ddea-4a5d-ae69-8aa2e48558c2",
+						"id": "e17acc3f-3bee-462b-a552-3e365307add6",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var firstLog = jsonData.logs[0];",
@@ -110,14 +110,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "3c9aac48-336f-44fb-9af1-76eab52d0b3e",
+						"id": "e95f0833-430f-4f22-8516-33df42b42f72",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
 							"});",
 							"",
 							"pm.test(\"Body is correct\", function () {",
-							"    pm.response.to.have.body(`${data[\"userId\"]} user added`);",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.eql(`${data[\"userId\"]} user added`);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -158,18 +159,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "2eb61a6c-2df0-4299-8c0d-0e200d0ecc4b",
+						"id": "43b309b8-a8d2-4251-a338-96c3d10feefb",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"// pm.test(\"Body is correct\", function () {\r",
-							"//     pm.response.to.have.body(`${data[\"userId\"]} user deleted`);\r",
-							"// });\r",
 							"pm.test(\"Body is correct\", function () {\r",
-							"    pm.response.to.have.body(`3423332 user deleted`);\r",
-							"});"
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(`${data[\"userId\"]} user deleted`);\r",
+							"});\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -208,14 +208,16 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a6298211-1a99-481e-88bb-fdef7b651529",
+						"id": "b79c2f56-4fe5-42d5-9cd9-b6a49fa63dd2",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
+							"\r",
 							"pm.test(\"Body is correct\", function () {\r",
-							"    pm.response.to.have.body(`${data[\"userId\"]} user updated`);\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(`${data[\"userId\"]} user updated`);\r",
 							"});"
 						],
 						"type": "text/javascript"
