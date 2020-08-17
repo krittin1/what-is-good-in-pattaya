@@ -12,24 +12,12 @@
     />
   </mat-form-field>
 
-  <div class="mat-elevation-z8"  id="table_history">
+  <div class="mat-elevation-z8" id="table_history">
     <table mat-table [dataSource]="dataSource" matSort>
-      <!-- FormID Column -->
-      <ng-container matColumnDef="formId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-        <td mat-cell *matCellDef="let row">{{ row.formId }}</td>
-      </ng-container>
-
       <!-- AdminID Column -->
       <ng-container matColumnDef="adminId">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Admin ID</th>
         <td mat-cell *matCellDef="let row">{{ row.adminId }}</td>
-      </ng-container>
-
-      <!-- Admin Name Column -->
-      <ng-container matColumnDef="adminName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Admin Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.adminName }}</td>
       </ng-container>
 
       <!-- Action Column -->
@@ -54,10 +42,10 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="timeStamp">
+      <ng-container matColumnDef="timestamp">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Timestamp</th>
         <td mat-cell *matCellDef="let row">
-          {{ row.timeStamp }}
+          {{ row.timestamp }}
         </td>
       </ng-container>
 
