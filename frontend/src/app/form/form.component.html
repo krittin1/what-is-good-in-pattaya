@@ -86,12 +86,27 @@
     <div class="submit-component">
       <!-- <button (click)="debug()">TEST</button> -->
 
-      <button
+      <!-- <button
       class="submit-btn"
       mat-raised-button
       color="primary"
       (click)="debug()">
       Submit Test
+      </button> -->
+
+      <button
+        class="submit-btn"
+        routerLink="/history"
+        mat-raised-button
+        color="primary"
+        id= "submit_btn"
+        (click)="debug()"
+      >
+      Submit
+      </button>
+
+      <button class="cancel-btn" routerLink="/form"  mat-raised-button disabled>
+        Cancel
       </button>
 
       <!-- <app-submit ></app-submit> -->
