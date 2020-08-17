@@ -1,11 +1,25 @@
 package com.pattaya.group1.web_service.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.Id;
+
 public class Employee {
+    @JsonIgnore
+    @Id
+    private String id;
     private String userId;
     private String role;
     private String status;
     private Information information;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Employee() {
     }
@@ -16,6 +30,7 @@ public class Employee {
         this.status = status;
         this.information = information;
     }
+
 
     public String getUserId() {
         return userId;

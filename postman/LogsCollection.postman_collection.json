@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e1761bfa-3e1e-4448-8595-c4c70a65c12d",
+		"_postman_id": "e8879847-e842-4db9-ba0e-6d62c1affb70",
 		"name": "LogsCollection",
 		"description": "This is a collection for testing pattaya web service api\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5d87f03d-1e59-4ccb-bc0f-8e570c05e3c1",
+						"id": "a2be0d54-ddea-4a5d-ae69-8aa2e48558c2",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var firstLog = jsonData.logs[0];",
@@ -29,33 +29,50 @@
 							"  pm.expect(jsonData.logsPerPage).to.be.a(\"number\");",
 							"  pm.expect(jsonData.logs).to.be.an(\"array\");",
 							"  ",
-							"  ",
+							"  if (jsonData.logs.length > 0) {",
 							"  ",
 							"  pm.expect(firstLog.message).to.be.a(\"string\");",
 							"  pm.expect(firstLog.adminId).to.be.a(\"string\");",
-							"  pm.expect(firstLog.adminUser).to.be.a(\"string\");",
+							"  ",
 							"  pm.expect(firstLog.object).to.be.an(\"object\");",
+							"  pm.expect(firstLog.somethingElse).to.be.undefined;",
 							"  pm.expect(firstLog.object.userId).to.be.a(\"string\");",
 							"  pm.expect(firstLog.object.action).to.be.a(\"string\");",
-							"  pm.expect(firstLog.object.formId).to.be.a(\"string\");",
 							"  pm.expect(firstLog.object.idCard).to.be.a(\"string\");",
-							"  pm.expect(firstLog.object.postCode).to.be.a(\"string\");",
+							"  pm.expect(firstLog.object.postcode).to.be.a(\"string\");",
 							"  pm.expect(firstLog.object.name).to.be.a(\"string\");",
 							"  pm.expect(firstLog.object.surname).to.be.a(\"string\");",
-							"  pm.expect(firstLog.timestamp).to.be.a(\"string\");  ",
+							"  pm.expect(firstLog.object.dateOfBirth).to.be.a(\"string\");",
+							"  pm.expect(firstLog.object.position).to.be.a(\"string\");",
+							"  pm.expect(firstLog.object.startDate).to.be.a(\"string\");",
+							"  pm.expect(firstLog.object.phoneNumber).to.be.a(\"string\");",
+							"  pm.expect(firstLog.object.address).to.be.a(\"string\");",
 							"  ",
+							"  pm.expect(firstLog.timestamp).to.be.a(\"string\");  ",
+							"",
+							"",
+							"",
+							"",
+							"  }",
 							"});",
 							"",
 							"",
 							"pm.test(\"Logs per page must be the same of the logs array length\", () => {",
-							"    pm.expect(jsonData.logs.length).to.eql(jsonData.logsPerPage);",
+							"    pm.expect(jsonData.logs.length).to.eql(jsonData.numberOfLogs);",
 							"}) ",
 							"",
 							"pm.test(\"If There is a userId, the logs must contain only that userId\", () => {",
-							"    if (data['userId']) {",
-							"        pm.expect(firstLog.object.userId).to.eql(data['userId']); ",
+							"    if (data['userId'] && jsonData.logs.length > 0) {",
+							"        pm.expect(firstLog.object.userId).to.eql(`${data['userId']}`); ",
 							"    }",
 							"})",
+							"",
+							"pm.test(\"Logs returned by the server must be sorted chronologically\", () => {",
+							"",
+							"})",
+							"",
+							"",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -93,7 +110,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "36957422-5720-44af-9f49-1f87e1cfe3c8",
+						"id": "3c9aac48-336f-44fb-9af1-76eab52d0b3e",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
@@ -112,7 +129,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"message\": {{message}},\n    \"adminId\": {{adminId}},\n    \"adminUser\": {{adminUser}},\n    \n    \n    \"object\" : {\n        \"action\": {{action}},\n        \"userId\": {{userId}},\n        \"formId\": {{formId}},\n        \"name\": {{name}},\n        \"surname\": {{surname}},\n        \"idCard\": {{idCard}},\n        \"postCode\": {{postCode}}\n\n    },\n    \"timestamp\": {{timestamp}}\n\n\n}",
+					"raw": "{\n    \"message\": \"{{message}}\",\n    \"adminId\": \"{{adminId}}\",\n    \"adminUser\": \"{{adminUser}}\",\n    \"object\": {\n        \"action\": \"{{action}}\",\n        \"userId\": \"{{userId}}\",\n        \"name\": \"{{name}}\",\n        \"surname\": \"{{surname}}\",\n        \"idCard\": \"{{idCard}}\",\n        \"postcode\": \"{{postcode}}\",\n        \"dateOfBirth\": \"{{dateOfBirth}}\",\n        \"position\": \"{{position}}\",\n        \"startDate\": \"{{startDate}}\",\n        \"phoneNumber\": \"{{phoneNumber}}\",\n        \"address\": \"{{address}}\"\n    },\n    \"timestamp\": \"{{timestamp}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,14 +158,17 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c941e914-cead-487f-b901-14f831724808",
+						"id": "2eb61a6c-2df0-4299-8c0d-0e200d0ecc4b",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
+							"// pm.test(\"Body is correct\", function () {\r",
+							"//     pm.response.to.have.body(`${data[\"userId\"]} user deleted`);\r",
+							"// });\r",
 							"pm.test(\"Body is correct\", function () {\r",
-							"    pm.response.to.have.body(`${data[\"userId\"]} user deleted`);\r",
+							"    pm.response.to.have.body(`3423332 user deleted`);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -159,7 +179,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/user",
+					"raw": "http://localhost:8080/api/v1/user/3423332",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -168,7 +188,15 @@
 					"path": [
 						"api",
 						"v1",
-						"user"
+						"user",
+						"3423332"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -180,7 +208,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "35834f88-9394-4ad1-a304-0027fdcfcdae",
+						"id": "a6298211-1a99-481e-88bb-fdef7b651529",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
