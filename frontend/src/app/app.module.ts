@@ -13,18 +13,20 @@ import { FormComponent } from './form/form.component';
 import { SubmitComponent } from './submit/submit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import { MatCardModule} from '@angular/material/card';
-import { MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
-
 
     NavComponent,
     LoginComponent,
@@ -33,18 +35,22 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     HistoryComponent,
     FormComponent,
     SubmitComponent,
-    
   ],
-  imports: [BrowserModule, 
-    AppRoutingModule, 
-    BrowserAnimationsModule, 
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
     MatDatepickerModule,
     MatIconModule,
-    MatInputModule],
-    
+    MatInputModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
