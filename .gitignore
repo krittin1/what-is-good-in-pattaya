@@ -2,6 +2,4 @@ test/e2e/chromedriver.exe
 log.html
 output.xml
 report.html
-test/e2e/selenium-screenshot-1.png
-test/e2e/selenium-screenshot-2.png
-test/e2e/selenium-screenshot-3.png
+test/e2e/selenium-screenshot-*
