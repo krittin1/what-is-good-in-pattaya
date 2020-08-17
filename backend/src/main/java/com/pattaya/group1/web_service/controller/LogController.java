@@ -77,13 +77,15 @@ public class LogController {
     }
 
     @PutMapping("/user")
-    public String updateUser(@RequestBody Log log) {
-        return "Put";
+    public ResponseEntity updateUser(@RequestBody Log log) {
+
+        return ResponseEntity.status(200).body(String.format("%s user updated", log.getObject().getUserId()));
     }
 
     @DeleteMapping("/user/{id}")
     public ResponseEntity deleteUser(@PathVariable String id) {
         Employee employee = employeeRepository.findByUserId(id);
+        employeeRepository.deleteByUserId(employee.getUserId());
         employee.setStatus("TERMINATED");
         employeeRepository.save(employee);
         return ResponseEntity.status(200).body(String.format("%s user deleted", employee.getUserId()));
