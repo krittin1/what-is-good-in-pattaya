@@ -1,4 +1,4 @@
-userId,role,status,information.firstName,information.lastName,information.address.currentAddress,information.address.postcode,information.dateOfBirth,information.phoneNumber,information.position,information.startDate,information.identityCardNo
+userId.string(),role.string(),status.string(),information.firstName.string(),information.lastName.string(),information.address.currentAddress.string(),information.address.postcode.string(),information.dateOfBirth.string(),information.phoneNumber.string() ,information.position.string(),information.startDate.string(),information.identityCardNo.string()
 1,employee,ACTIVE,Natthawit,Janjaroen,Bangkok,10110,27/09/1995,0824933423,Junior Backend Developer,1/7/2020,5327899245791
 2,admin,ACTIVE,Chatchanok,Wongsamang,Samutprakarn,10130,19/01/1998,0909750050,Junior Quality Assurance,1/7/2018,1977283805846
 3,admin,ACTIVE,Phison,Khankhang,Bangkok,10120,19/03/1998,0949249956,Junior Backend Developer,2/7/2018,7663163271045

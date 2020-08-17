@@ -1,4 +1,4 @@
-message,adminId,action,userId,timestamp
+message.string(),adminId.string(),action.string(),userId.string(),timestamp.string()
 New Employee Added,"2",Add,"1",2020-08-11T11:20:00.000Z
 Edit Surname of Veeraphat,"2",Edit,"6",2020-08-11T16:30:00.000Z
 Add Veeraphat,"2",Add,"6",2020-08-11T15:30:00.000Z
