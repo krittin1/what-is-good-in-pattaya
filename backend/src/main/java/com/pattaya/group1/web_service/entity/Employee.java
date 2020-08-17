@@ -31,9 +31,6 @@ public class Employee {
         this.information = information;
     }
 
-    public Employee(Employee employee) {
-        this(employee.userId, employee.role, employee.status, employee.information);
-    }
 
     public String getUserId() {
         return userId;
