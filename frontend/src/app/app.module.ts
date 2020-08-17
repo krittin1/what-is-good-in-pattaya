@@ -24,6 +24,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatSortModule,
     MatTableModule,
     MatPaginatorModule,
+    HttpClientModule,
   ],
 
   providers: [],

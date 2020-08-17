@@ -15,11 +15,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1")
 public class LogController {
@@ -32,7 +33,7 @@ public class LogController {
 
 
     @PostMapping("/user")
-    public ResponseEntity<String> createUser(@RequestBody Log log) {
+    public ResponseEntity<Map<String,String>> createUser(@RequestBody Log log) {
         System.out.println(log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
         if(employee != null){
@@ -73,20 +74,64 @@ public class LogController {
 
         changeLogRepository.save(changeLog);
         // Create new Log
-        return ResponseEntity.status(201).body(String.format("%s user added", log.getObject().getUserId()));
+        Map<String, String> map = Stream.of(
+                new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return ResponseEntity.status(201).body(map);
     }
 
     @PutMapping("/user")
-    public String updateUser(@RequestBody Log log) {
-        return "Put";
+    public ResponseEntity<Map<String,String>> updateUser(@RequestBody Log log) {
+        Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+        Object object = log.getObject();
+        employee.setUserId(object.getUserId());
+
+        Information information = employee.getInformation();
+        information.setDateOfBirth(object.getDateOfBirth());
+        information.setFirstName(object.getName());
+        information.setLastName(object.getSurname());
+        information.setIdentityCardNo(object.getIdCard());
+        information.setPhoneNumber(object.getPhoneNumber());
+        information.setPosition(object.getPosition());
+        information.setStartDate(object.getStartDate());
+        Address address = new Address();
+        address.setCurrentAddress(object.getAddress());
+        address.setPostcode(object.getPostcode());
+        information.setAddress(address);
+        employee.setInformation(information);
+
+        // Save the employee first;
+        employeeRepository.save(employee);
+
+        ChangeLog changeLog = new ChangeLog();
+        changeLog.setAction(log.getObject().getAction());
+        changeLog.setAdminId(log.getAdminId());
+        changeLog.setMessage(log.getMessage());
+        changeLog.setTimestamp(log.getTimestamp());
+        changeLog.setUserId(log.getObject().getUserId());
+
+        // Create new Log
+        changeLogRepository.save(changeLog);
+        Map<String, String> map = Stream.of(
+                new AbstractMap.SimpleEntry<>("message",String.format("%s user updated", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return ResponseEntity.status(200).body(map);
     }
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity deleteUser(@PathVariable String id) {
+    public ResponseEntity<Map<String,String>> deleteUser(@PathVariable String id,@RequestBody Log log) {
         Employee employee = employeeRepository.findByUserId(id);
         employee.setStatus("TERMINATED");
         employeeRepository.save(employee);
-        return ResponseEntity.status(200).body(String.format("%s user deleted", employee.getUserId()));
+        ChangeLog changeLog = new ChangeLog();
+        changeLog.setAction(log.getObject().getAction());
+        changeLog.setAdminId(log.getAdminId());
+        changeLog.setMessage(log.getMessage());
+        changeLog.setTimestamp(log.getTimestamp());
+        changeLog.setUserId(log.getObject().getUserId());
+
+        changeLogRepository.save(changeLog);
+        Map<String, String> map = Stream.of(
+                new AbstractMap.SimpleEntry<>("message",String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        return ResponseEntity.status(200).body(map);
     }
 
 
@@ -109,6 +154,8 @@ public class LogController {
         List<Log> logResponseList = new ArrayList<>();
         for (ChangeLog changeLog : changeLogPage) {
             Employee userEmployee = employeeRepository.findByUserId(changeLog.getUserId());
+            System.out.println(changeLog.getUserId());
+            System.out.println(userEmployee.toString());
             logResponseList.add(new Log(
                     changeLog.getMessage(),
                     changeLog.getAdminId(),
