@@ -2,6 +2,7 @@ package com.pattaya.group1.web_service.controller;
 
 import com.pattaya.group1.web_service.entity.ChangeLog;
 import com.pattaya.group1.web_service.entity.Employee;
+import com.pattaya.group1.web_service.entity.Information;
 import com.pattaya.group1.web_service.model.Log;
 import com.pattaya.group1.web_service.model.LogResponse;
 import com.pattaya.group1.web_service.model.Object;
@@ -30,7 +31,26 @@ public class LogController {
 
     @PostMapping("/user")
     public String createUser(@RequestBody Log log) {
-        return "Post";
+        ChangeLog changeLog = new ChangeLog();
+        Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+        if(employee != null){
+            return log.getObject().getUserId() + "user already exist";
+        }
+        else{
+            Information information = new Information();
+            changeLog.setAdminId(log.getAdminId());
+            changeLog.setAction("ADD");
+            changeLog.setMessage(log.getMessage());
+            changeLog.setUserId(log.getObject().getUserId());
+            changeLog.setTimestamp(log.getTimestamp());
+            employee.setUserId(changeLog.getUserId());
+            employee.setStatus("ACTIVE");
+            employee.setRole("Backend Developer");
+            return employee.getUserId() + "user added";
+        }
+//        changeLogRepository.save(changeLog);
+//        employeeRepository.save(employee);
+
     }
 
     @PutMapping("/user")
