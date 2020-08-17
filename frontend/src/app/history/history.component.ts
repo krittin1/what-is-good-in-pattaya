@@ -33,6 +33,8 @@ export class HistoryComponent implements OnInit {
     'timestamp',
     'message',
   ];
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(public service: FormService) {}
 
@@ -55,8 +57,10 @@ export class HistoryComponent implements OnInit {
         };
         this.results.push(userData);
       });
+      this.dataSource = new MatTableDataSource(this.results);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
-    this.dataSource = new MatTableDataSource(this.results);
   }
 
   applyFilter(event: Event) {
@@ -66,5 +70,17 @@ export class HistoryComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  /** Builds and returns a new User. */
+  createNewUser(id: number): UserData {
+    return {
+      adminId: '',
+      action: '',
+      userId: '',
+      name: '',
+      timestamp: '',
+      message: '',
+    };
   }
 }
