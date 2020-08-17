@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fac1054f-3600-4cb3-9d7b-c078aa8c7218",
+		"_postman_id": "e8879847-e842-4db9-ba0e-6d62c1affb70",
 		"name": "LogsCollection",
 		"description": "This is a collection for testing pattaya web service api\n",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -12,7 +12,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "50990338-ec12-4315-8cc8-0384d40b048d",
+						"id": "a2be0d54-ddea-4a5d-ae69-8aa2e48558c2",
 						"exec": [
 							"var jsonData = pm.response.json();",
 							"var firstLog = jsonData.logs[0];",
@@ -110,7 +110,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "47f80d1f-8c08-4e32-b29a-0a83228e7242",
+						"id": "3c9aac48-336f-44fb-9af1-76eab52d0b3e",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
@@ -136,6 +136,95 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2eb61a6c-2df0-4299-8c0d-0e200d0ecc4b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// pm.test(\"Body is correct\", function () {\r",
+							"//     pm.response.to.have.body(`${data[\"userId\"]} user deleted`);\r",
+							"// });\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(`3423332 user deleted`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/user/3423332",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"3423332"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6298211-1a99-481e-88bb-fdef7b651529",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(`${data[\"userId\"]} user updated`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
 				"url": {
 					"raw": "http://localhost:8080/api/v1/user",
 					"protocol": "http",

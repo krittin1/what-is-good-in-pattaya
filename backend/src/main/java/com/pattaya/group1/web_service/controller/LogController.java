@@ -33,14 +33,12 @@ public class LogController {
 
     @PostMapping("/user")
     public ResponseEntity<String> createUser(@RequestBody Log log) {
-        // create new user
         System.out.println(log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
         if(employee != null){
             employeeRepository.deleteByUserId(log.getObject().getUserId());
-            //return ResponseEntity.status(409).body(String.format("%s user already exist", log.getObject().getUserId()));
         }
-        //else{
+        // create new user
         employee = new Employee();
         employee.setRole("Employee");
         employee.setStatus("ACTIVE");
@@ -76,7 +74,6 @@ public class LogController {
         changeLogRepository.save(changeLog);
         // Create new Log
         return ResponseEntity.status(201).body(String.format("%s user added", log.getObject().getUserId()));
-        //}
     }
 
     @PutMapping("/user")
@@ -85,9 +82,11 @@ public class LogController {
     }
 
     @DeleteMapping("/user/{id}")
-    public String deleteUser(@RequestParam String id) {
-        employeeRepository.deleteById(id);
-        return "Delete";
+    public ResponseEntity deleteUser(@PathVariable String id) {
+        Employee employee = employeeRepository.findByUserId(id);
+        employee.setStatus("TERMINATED");
+        employeeRepository.save(employee);
+        return ResponseEntity.status(200).body(String.format("%s user deleted", employee.getUserId()));
     }
 
 

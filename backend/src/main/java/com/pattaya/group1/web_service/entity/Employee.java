@@ -1,7 +1,11 @@
 package com.pattaya.group1.web_service.entity;
 
 
+import org.springframework.data.annotation.Id;
+
 public class Employee {
+    @Id
+    private String id;
     private String userId;
     private String role;
     private String status;
@@ -15,6 +19,10 @@ public class Employee {
         this.role = role;
         this.status = status;
         this.information = information;
+    }
+
+    public Employee(Employee employee) {
+        this(employee.userId, employee.role, employee.status, employee.information);
     }
 
     public String getUserId() {
