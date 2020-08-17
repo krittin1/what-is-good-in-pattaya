@@ -7,17 +7,66 @@ public class Object {
     private String surname;
     private String idCard;
     private String postcode;
+    private String dateOfBirth;
+    private String position;
+    private String startDate;
+    private String phoneNumber;
+    private String address;
 
-    public Object(String action, String userId, String name, String surname, String idCard, String postCode) {
+
+    public Object(String action, String userId, String name, String surname, String idCard, String postcode, String dateOfBirth, String position, String startDate, String phoneNumber, String address) {
         this.action = action;
         this.userId = userId;
         this.name = name;
         this.surname = surname;
         this.idCard = idCard;
-        this.postcode = postCode;
+        this.postcode = postcode;
+        this.dateOfBirth = dateOfBirth;
+        this.position = position;
+        this.startDate = startDate;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getIdCard() {
         return idCard;
@@ -77,6 +126,11 @@ public class Object {
                 ", surname='" + surname + '\'' +
                 ", idCard='" + idCard + '\'' +
                 ", postcode='" + postcode + '\'' +
+                ", dateOfBirth='" + dateOfBirth + '\'' +
+                ", position='" + position + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
