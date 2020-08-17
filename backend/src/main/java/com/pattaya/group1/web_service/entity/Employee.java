@@ -11,6 +11,14 @@ public class Employee {
     private String status;
     private Information information;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Employee() {
     }
 
