@@ -42,7 +42,7 @@ public class LogController {
         }
         employee = buildEmployeeOnLog(log);
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add " + log.getObject().getUserId());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId());
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -113,7 +113,7 @@ public class LogController {
         if ("Terminated".equals(employee.getStatus())) {
             throw new DoubleTerminatedEmployeeException("Employee whose id is " + log.getObject().getUserId() + " is already terminated");
         }
-        employee.setStatus("Terminated");
+        employee.setStatus("TERMINATED");
         employeeRepository.save(employee);
         ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", "Terminated user " + log.getObject().getUserId());
         changeLogRepository.save(changeLog);
