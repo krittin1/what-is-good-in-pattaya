@@ -63,7 +63,7 @@
 							"",
 							"pm.test(\"If There is a userId, the logs must contain only that userId\", () => {",
 							"    if (data['userId'] && jsonData.logs.length > 0) {",
-							"        pm.expect(firstLog.object.userId).to.eql(`${data['userId']}`); ",
+							"        pm.expect(firstLog.object.userId).to.eql(`${data['getUserId']}`); ",
 							"    }",
 							"})",
 							"",
@@ -83,7 +83,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://159.65.129.76:8080/api/v1/logs?userId={{userId}}",
+					"raw": "http://159.65.129.76:8080/api/v1/logs?userId={{getUserId}}",
 					"protocol": "http",
 					"host": [
 						"159",
@@ -100,7 +100,7 @@
 					"query": [
 						{
 							"key": "userId",
-							"value": "{{userId}}"
+							"value": "{{getUserId}}"
 						}
 					]
 				}
