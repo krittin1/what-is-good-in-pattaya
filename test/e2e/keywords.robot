@@ -74,7 +74,7 @@ Click Submit Button
 Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     # Table Should Contain    id: table_history    ${MESSAGE}
-    Wait Until Page Contains    User History.
+    Wait Until Page Contains    User History
     Get Table Cell    id: table_history1    2    2    ${ADMIN_ID}  
     Get Table Cell    id: table_history1    2    3    ${ADMIN_USER}  
     Get Table Cell    id: table_history1    2    4    ${ACTION}
