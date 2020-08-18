@@ -1,5 +1,5 @@
 *** Variables ***
-${URL}    http://localhost:4200/#/login
+${URL}    http://159.65.131.126/#/login
 
 *** Keywords ***
 Add New Employee
