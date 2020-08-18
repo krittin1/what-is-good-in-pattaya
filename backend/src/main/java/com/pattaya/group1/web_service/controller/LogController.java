@@ -162,7 +162,7 @@ public class LogController {
                     changeLog.getTimestamp()
             ));
         }
-        return new LogResponse(changeLogPage.getNumberOfElements(), pageNumber, itemPerPage, logResponseList);
+        return new LogResponse((int) changeLogRepository.count(), pageNumber, itemPerPage, logResponseList);
 
     }
 
