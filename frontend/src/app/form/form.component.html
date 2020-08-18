@@ -1,5 +1,5 @@
 <br />
-<h2 style="margin-left: 75px;">Allianz User Form.</h2>
+<h2 style="margin-left: 75px;">Allianz User Form</h2>
 <div class="parent">
   <div class="div1"></div>
   <div class="div2">
@@ -7,25 +7,25 @@
       <div class="form-card">
         <form class="example-form" [formGroup]="addForm">
           <mat-form-field class="example-full-width">
-            <mat-label>Allianz technoligy</mat-label>
+            <mat-label>Allianz technology</mat-label>
             <input matInput disabled value="Form" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>User ID</mat-label>
-            <input matInput id="user_id" formControlName="userId">
+            <input matInput id="user_id" formControlName="userId" required>
           </mat-form-field>
           <table class="example-full-width" cellspacing="0">
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>First name</mat-label>
-                  <input matInput id="firstname"  formControlName="name">
+                  <input matInput id="firstname" formControlName="name" required minlength=2>
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>Last Name </mat-label>
-                  <input matInput id="lastname"  formControlName="surname">
+                  <input matInput id="lastname" formControlName="surname" required minlength=2>
                 </mat-form-field>
               </td>
             </tr>
@@ -33,26 +33,26 @@
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>ID card</mat-label>
-              <input matInput id="id_card" formControlName="idCard"/>
+              <input matInput id="id_card" formControlName="idCard" required minlength=13 maxlength=13>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Date of birth</mat-label>
-              <input matInput id="date_of_birth" formControlName="dateOfBirth"/>
+              <input matInput id="date_of_birth" formControlName="dateOfBirth">
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Position</mat-label>
-              <input matInput id="position" formControlName="position" />
+              <input matInput id="position" formControlName="position">
             </mat-form-field>
           </p>
           <form class="example-form">
             <mat-form-field class="example-full-width">
               <mat-label>Telephone</mat-label>
               <span matPrefix>+66 &nbsp;</span>
-              <input id="phone_number" matInput placeholder="" formControlName="phoneNumber"/>
+              <input id="phone_number" matInput placeholder="" formControlName="phoneNumber">
               <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
             </mat-form-field>
           </form>
@@ -77,7 +77,7 @@
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Message</mat-label>
-              <input matInput id="message" formControlName="message"/>
+              <input matInput id="message" formControlName="message">
             </mat-form-field>
           </p>
         </form>
@@ -94,18 +94,12 @@
       Submit Test
       </button> -->
 
-      <button
-        class="submit-btn"
-        routerLink="/history"
-        mat-raised-button
-        color="primary"
-        id= "submit_btn"
-        (click)="debug()"
-      >
-      Submit
+      <button class="submit-btn" routerLink="/history" mat-raised-button color="primary" id="submit_btn"
+        (click)="debug()">
+        Submit
       </button>
 
-      <button class="cancel-btn" routerLink="/form"  mat-raised-button disabled>
+      <button class="cancel-btn" routerLink="/form" mat-raised-button disabled>
         Cancel
       </button>
 

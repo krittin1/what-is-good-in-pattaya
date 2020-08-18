@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
-.example-form {
+
+
+
+/* .example-form {
   min-width: 150px;
-  /* max-width: 500px; */
   width: 100%;
-}
+} */
 
 .example-full-width {
   width: 100%;
@@ -39,3 +41,13 @@ h2 {
   margin-left: 300px;
   margin-top: 20px;
 }
+
+.cancel-btn {
+  margin-left: 25px;
+}
+
+.delete-btn {
+    margin-left: 25px;
+  }
+
+
