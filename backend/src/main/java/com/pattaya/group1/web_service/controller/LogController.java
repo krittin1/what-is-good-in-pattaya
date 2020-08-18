@@ -35,13 +35,14 @@ public class LogController {
 
     @PostMapping("/user")
     public ResponseEntity<Map<String, String>> createUser(@RequestBody Log log) {
+        logger.info("Create => " + log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
         if (employee != null) {
             employeeRepository.deleteByUserId(log.getObject().getUserId());
         }
-        employee = buildEmployeeOnLog(log, "Active");
+        employee = buildEmployeeOnLog(log);
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added");
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add " + log.getObject().getUserId());
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -52,34 +53,51 @@ public class LogController {
     // Will it be wiser if we know what fields have change so that we can't adjust the field accordingly ?
     @PutMapping("/user")
     public ResponseEntity<Map<String, String>> updateUser(@RequestBody Log log) {
+        logger.info("Update => " + log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
         // Save the employee first;
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
         }
-
+        List<String> changes = new ArrayList<>();
         Information information = employee.getInformation();
         Address address = employee.getInformation().getAddress();
-        if (log.getObject().getName() != null)
+        if (log.getObject().getName() != null) {
             information.setFirstName(log.getObject().getName());
-        if (log.getObject().getSurname() != null)
+            changes.add("first name");
+        }
+        if (log.getObject().getSurname() != null) {
             information.setLastName(log.getObject().getSurname());
-        if (log.getObject().getPostcode() != null)
+            changes.add("last name");
+        }
+        if (log.getObject().getPostcode() != null) {
             address.setPostcode(log.getObject().getPostcode());
-        if (log.getObject().getPhoneNumber() != null)
+            changes.add("postcode");
+        }
+        if (log.getObject().getPhoneNumber() != null) {
+
+
             information.setPosition(log.getObject().getPosition());
-        if (log.getObject().getPhoneNumber() != null)
+            changes.add("position");
+        }
+        if (log.getObject().getPhoneNumber() != null) {
             information.setPhoneNumber(log.getObject().getPhoneNumber());
-        if (log.getObject().getAddress() != null)
+            changes.add("phone number");
+        }
+        if (log.getObject().getAddress() != null) {
             address.setCurrentAddress(log.getObject().getAddress());
+            changes.add("address");
+        }
 
         employeeRepository.save(employee);
 
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Edited");
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Edited", String.format(
+                "Change %s of user %s", changes.toString(), log.getObject().getUserId())
+        );
         // Create new Log
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
-                new AbstractMap.SimpleEntry<>("message", String.format("%s user updated", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                new AbstractMap.SimpleEntry<>("message", String.format("Change %s of user %s", changes.toString(), log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return ResponseEntity.status(200).body(map);
 
     }
@@ -87,6 +105,7 @@ public class LogController {
 
     @DeleteMapping("/user/{id}")
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestBody Log log) {
+        logger.info("Terminate => " + log.toString());
         Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
@@ -96,7 +115,7 @@ public class LogController {
         }
         employee.setStatus("Terminated");
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated");
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", "Terminated user " + log.getObject().getUserId());
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -110,14 +129,15 @@ public class LogController {
             @RequestParam(defaultValue = "0", name = "page") int pageNumber,
             @RequestParam(defaultValue = "10", name = "item_per_page") int itemPerPage) {
 
+        logger.info("Get all logs... ");
         Page<ChangeLog> changeLogPage;
         if (userId != null) {
-            changeLogPage = changeLogRepository.findByUserId(PageRequest.of(pageNumber, itemPerPage), userId);
+            changeLogPage = changeLogRepository.findByUserIdOrderByIdDesc(PageRequest.of(pageNumber, itemPerPage), userId);
 
 
         } else {
 
-            changeLogPage = changeLogRepository.findAll(PageRequest.of(pageNumber, itemPerPage));
+            changeLogPage = changeLogRepository.findAllByOrderByIdDesc(PageRequest.of(pageNumber, itemPerPage));
 
         }
         List<Log> logResponseList = new ArrayList<>();
@@ -169,7 +189,7 @@ public class LogController {
                                  @RequestParam(required = false, defaultValue = "10") int numberOfElements) {
         Page<ChangeLog> changeLogs;
         if (id != null)
-            changeLogs = changeLogRepository.findByUserId(PageRequest.of(page, numberOfElements), id);
+            changeLogs = changeLogRepository.findByUserIdOrderByIdDesc(PageRequest.of(page, numberOfElements), id);
         else {
             changeLogs = changeLogRepository.findAll(PageRequest.of(page, numberOfElements));
         }
@@ -177,23 +197,23 @@ public class LogController {
     }
 
 
-    private ChangeLog buildChangeLogOnLog(Log log, String action) {
+    private ChangeLog buildChangeLogOnLog(Log log, String action, String message) {
         return new ChangeLog.Builder()
                 .withAction(action)
                 .withAdminId(log.getAdminId())
-                .withMessage(log.getMessage())
+                .withMessage(message)
                 .withUserId(log.getObject().getUserId())
-                .withTimestamp(new Date().toString()).build();
+                .withTimestamp(log.getTimestamp()).build();
     }
 
-    private Employee buildEmployeeOnLog(Log log, String status) {
+    private Employee buildEmployeeOnLog(Log log) {
 
 
         Object object = log.getObject();
 
         return new Employee.Builder()
                 .withRole("Employee")
-                .withStatus(status)
+                .withStatus("Active")
                 .withUserId(object.getUserId())
                 .withInformation(
                         new Information.Builder()

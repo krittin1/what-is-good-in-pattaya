@@ -50,11 +50,9 @@ export class FormComponent implements OnInit {
         this.addForm.get('phoneNumber').value,
         this.addForm.get('address').value
       ),
-      '11/08/2020 11.20 A.M.'
+      "a few minute ago."
     );
-
     console.log(this.form);
-    // console.log(this.addForm.get('userId').value)
     this.service.addForm(this.form).subscribe((data) => {
       console.log(data);
     });
