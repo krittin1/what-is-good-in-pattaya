@@ -13,6 +13,54 @@ public class Employee {
     private String status;
     private Information information;
 
+    private Employee() {
+    }
+
+    public static class Builder {
+
+        private String id;
+        private String userId;
+        private String role;
+        private String status;
+        private Information information;
+
+
+        public Builder withId(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder withRole(String role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder withStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder withInformation(Information information) {
+            this.information = information;
+            return this;
+        }
+
+        public Employee build() {
+            Employee employee = new Employee();
+            employee.id = this.id;
+            employee.userId = this.userId;
+            employee.role = this.role;
+            employee.status = this.status;
+            employee.information = this.information;
+            return employee;
+        }
+    }
+
     public String getId() {
         return id;
     }
@@ -20,17 +68,6 @@ public class Employee {
     public void setId(String id) {
         this.id = id;
     }
-
-    public Employee() {
-    }
-
-    public Employee(String userId, String role, String status, Information information) {
-        this.userId = userId;
-        this.role = role;
-        this.status = status;
-        this.information = information;
-    }
-
 
     public String getUserId() {
         return userId;
@@ -67,7 +104,8 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
                 ", information=" + information +
