@@ -34,104 +34,76 @@ public class LogController {
 
 
     @PostMapping("/user")
-    public ResponseEntity<Map<String,String>> createUser(@RequestBody Log log) {
-        System.out.println(log.toString());
+    public ResponseEntity<Map<String, String>> createUser(@RequestBody Log log) {
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
-        if(employee != null){
+        if (employee != null) {
             employeeRepository.deleteByUserId(log.getObject().getUserId());
         }
-        // create new user
-        employee = new Employee();
-        employee.setRole("Employee");
-        employee.setStatus("ACTIVE");
-
-        Object object = log.getObject();
-        employee.setUserId(object.getUserId());
-
-        Information information = new Information();
-        information.setDateOfBirth(object.getDateOfBirth());
-        information.setFirstName(object.getName());
-        information.setLastName(object.getSurname());
-        information.setIdentityCardNo(object.getIdCard());
-        information.setPhoneNumber(object.getPhoneNumber());
-        information.setPosition(object.getPosition());
-        information.setStartDate(object.getStartDate());
-        employee.setInformation(information);
-
-        Address address = new Address();
-        address.setCurrentAddress(object.getAddress());
-        address.setPostcode(object.getPostcode());
-
-        information.setAddress(address);
-        // Save the employee first;
+        employee = buildEmployeeOnLog(log, "Active");
         employeeRepository.save(employee);
-
-        ChangeLog changeLog = new ChangeLog();
-        changeLog.setAction(object.getAction());
-        changeLog.setAdminId(log.getAdminId());
-        changeLog.setMessage(log.getMessage());
-        changeLog.setTimestamp(log.getTimestamp());
-        changeLog.setUserId(object.getUserId());
-
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", log.getChangedFields());
         changeLogRepository.save(changeLog);
-        // Create new Log
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return ResponseEntity.status(201).body(map);
     }
 
+
+    // Will it be wiser if we know what fields have change so that we can't adjust the field accordingly ?
     @PutMapping("/user")
-    public ResponseEntity<Map<String,String>> updateUser(@RequestBody Log log) {
+    public ResponseEntity<Map<String, String>> updateUser(@RequestBody Log log) {
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
-        Object object = log.getObject();
-        employee.setUserId(object.getUserId());
-
-        Information information = employee.getInformation();
-        information.setDateOfBirth(object.getDateOfBirth());
-        information.setFirstName(object.getName());
-        information.setLastName(object.getSurname());
-        information.setIdentityCardNo(object.getIdCard());
-        information.setPhoneNumber(object.getPhoneNumber());
-        information.setPosition(object.getPosition());
-        information.setStartDate(object.getStartDate());
-        Address address = new Address();
-        address.setCurrentAddress(object.getAddress());
-        address.setPostcode(object.getPostcode());
-        information.setAddress(address);
-        employee.setInformation(information);
-
         // Save the employee first;
+        if (employee == null) {
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
+        }
+
+        for (String changeField : log.getChangedFields()) {
+            setEmployee(changeField, employee, log);
+        }
         employeeRepository.save(employee);
 
-        ChangeLog changeLog = new ChangeLog();
-        changeLog.setAction(log.getObject().getAction());
-        changeLog.setAdminId(log.getAdminId());
-        changeLog.setMessage(log.getMessage());
-        changeLog.setTimestamp(log.getTimestamp());
-        changeLog.setUserId(log.getObject().getUserId());
-
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Edited", log.getChangedFields());
         // Create new Log
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
-                new AbstractMap.SimpleEntry<>("message",String.format("%s user updated", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                new AbstractMap.SimpleEntry<>("message", String.format("%s user updated", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return ResponseEntity.status(200).body(map);
     }
 
-    @DeleteMapping("/user/{id}")
-    public ResponseEntity<Map<String,String>> deleteUser(@PathVariable String id,@RequestBody Log log) {
-        Employee employee = employeeRepository.findByUserId(id);
-        employee.setStatus("TERMINATED");
-        employeeRepository.save(employee);
-        ChangeLog changeLog = new ChangeLog();
-        changeLog.setAction(log.getObject().getAction());
-        changeLog.setAdminId(log.getAdminId());
-        changeLog.setMessage(log.getMessage());
-        changeLog.setTimestamp(log.getTimestamp());
-        changeLog.setUserId(log.getObject().getUserId());
+    private void setEmployee(String changeField, Employee employee, Log log) {
+        Information information = employee.getInformation();
+        Address address = employee.getInformation().getAddress();
+        if ("name".equals(changeField))
+            information.setFirstName(log.getObject().getName());
+        if ("surname".equals(changeField))
+            information.setLastName(log.getObject().getSurname());
+        if ("postcode".equals(changeField))
+            address.setPostcode(log.getObject().getPostcode());
+        if ("position".equals(changeField))
+            information.setPosition(log.getObject().getPosition());
+        if ("phoneNumber".equals(changeField))
+            information.setPhoneNumber(log.getObject().getPhoneNumber());
+        if ("address".equals(changeField))
+            address.setCurrentAddress(log.getObject().getAddress());
 
+    }
+
+    @DeleteMapping("/user")
+    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody Log log) {
+        Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+        if (employee == null) {
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
+        }
+        if ("Terminated".equals(employee.getStatus())) {
+            throw new DoubleTerminatedEmployeeException("Employee whose id is " + log.getObject().getUserId() + " is already terminated");
+        }
+        employee.setStatus("Terminated");
+        employeeRepository.save(employee);
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", log.getChangedFields());
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
-                new AbstractMap.SimpleEntry<>("message",String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return ResponseEntity.status(200).body(map);
     }
 
@@ -155,8 +127,6 @@ public class LogController {
         List<Log> logResponseList = new ArrayList<>();
         for (ChangeLog changeLog : changeLogPage) {
             Employee userEmployee = employeeRepository.findByUserId(changeLog.getUserId());
-            System.out.println(changeLog.getUserId());
-            System.out.println(userEmployee.toString());
             logResponseList.add(new Log(
                     changeLog.getMessage(),
                     changeLog.getAdminId(),
@@ -199,24 +169,63 @@ public class LogController {
 
     // Helper endpoints for debugging
     @GetMapping({"/changelogs/{id}", "/changelogs"})
-    public String found(@PathVariable(required = false) String id, @RequestParam(required = false, defaultValue = "0") int page,
-                        @RequestParam(required = false, defaultValue = "10") int numberOfElements) {
+    public List<ChangeLog> found(@PathVariable(required = false) String id, @RequestParam(required = false, defaultValue = "0") int page,
+                                 @RequestParam(required = false, defaultValue = "10") int numberOfElements) {
         Page<ChangeLog> changeLogs;
         if (id != null)
             changeLogs = changeLogRepository.findByUserId(PageRequest.of(page, numberOfElements), id);
         else {
             changeLogs = changeLogRepository.findAll(PageRequest.of(page, numberOfElements));
         }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (ChangeLog changeLog : changeLogs) {
-            stringBuilder.append(changeLog.toString());
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
+        return changeLogs.toList();
     }
+
+
+    private ChangeLog buildChangeLogOnLog(Log log, String action, List<String> changedFields) {
+        if (changedFields != null) {
+            logger.info(changedFields.toString());
+        }
+        return new ChangeLog.Builder()
+                .withAction(action)
+                .withAdminId(log.getAdminId())
+                .withMessage(log.getMessage() + ((changedFields != null) ? ("Fields Changed => " + changedFields.toString()) : ""))
+                .withUserId(log.getObject().getUserId())
+                .withTimestamp(new Date().toString()).build();
+    }
+
+    private Employee buildEmployeeOnLog(Log log, String status) {
+
+
+        Object object = log.getObject();
+
+        return new Employee.Builder()
+                .withRole("Employee")
+                .withStatus(status)
+                .withUserId(object.getUserId())
+                .withInformation(
+                        new Information.Builder()
+                                .withFirstName(object.getName())
+                                .withDateOfBirth(object.getDateOfBirth())
+                                .withLastName(object.getSurname())
+                                .withIdentificationCardNo(object.getIdCard())
+                                .withPhoneNumber(object.getPhoneNumber())
+                                .withPosition(object.getPosition())
+                                .withStartDate(object.getStartDate())
+                                .withAddress(
+                                        new Address.Builder()
+                                                .withCurrentAddress(object.getAddress())
+                                                .withPostcode(object.getPostcode())
+                                                .build()
+                                )
+                                .build()
+                ).build();
+    }
+
 
     @ExceptionHandler({EmployeeNotFound.class, DoubleTerminatedEmployeeException.class})
     public ResponseEntity<String> exception(RuntimeException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 }
+
+

@@ -10,6 +10,74 @@ public class Information {
     private String startDate;
     private String identityCardNo;
 
+    private Information() {
+    }
+
+    public static class Builder {
+
+        private String firstName;
+        private String lastName;
+        private Address address;
+        private String dateOfBirth;
+        private String phoneNumber;
+        private String position;
+        private String startDate;
+        private String identityCardNo;
+
+        public Builder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public Builder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Builder withAddress(Address address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder withDateOfBirth(String dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public Builder withPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public Builder withPosition(String position) {
+            this.position = position;
+            return this;
+        }
+
+        public Builder withStartDate(String startDate) {
+            this.startDate = startDate;
+            return this;
+        }
+
+        public Builder withIdentificationCardNo(String identificationCardNo) {
+            this.identityCardNo = identificationCardNo;
+            return this;
+        }
+
+        public Information build() {
+            Information information = new Information();
+            information.firstName = this.firstName;
+            information.lastName = this.lastName;
+            information.address = this.address;
+            information.phoneNumber = this.phoneNumber;
+            information.dateOfBirth = this.dateOfBirth;
+            information.position = this.position;
+            information.startDate = this.startDate;
+            information.identityCardNo = this.identityCardNo;
+            return information;
+        }
+    }
+
     public Address getAddress() {
         return address;
     }
