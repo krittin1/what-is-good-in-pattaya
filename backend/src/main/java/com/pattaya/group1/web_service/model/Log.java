@@ -6,23 +6,13 @@ public class Log {
     private Object object;
     private String timestamp;
 
+
     public Log(String message, String adminId, Object object, String timestamp) {
         this.message = message;
         this.adminId = adminId;
         this.object = object;
         this.timestamp = timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "message='" + message + '\'' +
-                ", adminId='" + adminId + '\'' +
-                ", object=" + object +
-                ", timestamp='" + timestamp + '\'' +
-                '}';
-    }
-
 
     public String getMessage() {
         return message;
@@ -55,5 +45,15 @@ public class Log {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "message='" + message + '\'' +
+                ", adminId='" + adminId + '\'' +
+                ", object=" + object +
+                ", timestamp='" + timestamp + '\'' +
+                '}';
     }
 }

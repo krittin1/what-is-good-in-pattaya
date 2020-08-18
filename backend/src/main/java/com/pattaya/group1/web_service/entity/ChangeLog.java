@@ -9,6 +9,51 @@ public class ChangeLog {
     private String timestamp;
 
 
+    private ChangeLog(String userId, String action, String adminId, String message, String timestamp) {
+        this.userId = userId;
+        this.action = action;
+        this.adminId = adminId;
+        this.message = message;
+        this.timestamp = timestamp;
+    }
+
+
+    public static class Builder {
+        private String userId;
+        private String action;
+        private String adminId;
+        private String message;
+        private String timestamp;
+
+        public Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder withAction(String action) {
+            this.action = action;
+            return this;
+        }
+
+        public Builder withAdminId(String adminId) {
+            this.adminId = adminId;
+            return this;
+        }
+
+        public Builder withMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        public Builder withTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        public ChangeLog build() {
+            return new ChangeLog(userId, action, adminId, message, timestamp);
+        }
+    }
 
     public String getUserId() {
         return userId;
