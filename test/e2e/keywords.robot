@@ -1,5 +1,5 @@
 *** Variables ***
-${URL}    http://localhost:4200/login
+${URL}    http://localhost:4200/#/login
 
 *** Keywords ***
 Add New Employee
@@ -19,7 +19,7 @@ Edit Employee's Information
     Click Login Button
     Change To Action Page
     Click Edit Button
-    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}
+    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
     Edit Employee's Info    ${SURNAME}    ${MESSAGE}
     Click Save Button
     Change To History Page   ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
@@ -31,7 +31,7 @@ Delete Employee's Information
     Click Login Button
     Change To Action Page
     Click Delete Button
-    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}
+    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
     Click Delete Button To Confirm
     Change To History Page    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Close Form Browser
@@ -86,9 +86,10 @@ Click Edit Button
     Click Button    id: edit_btn
 
 Check If Employee's Info Appears
-    [Arguments]    ${USER_ID}    ${NAME}    ${ID_CARD}
+    [Arguments]    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
     Wait Until Element Contains    id: user_id    ${USER_ID}
     Wait Until Element Contains    id: firstname    ${NAME} 
+    Wait Until Element Contains    id: lastname    ${SURNAME}
     Wait Until Element Contains    id: id_card    ${ID_CARD}
 
 Edit Employee's Info
