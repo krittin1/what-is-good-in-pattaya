@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ConfigService {
-  url = 'http://localhost:8080/api/v1/user'
+  url = 'http://159.65.129.76:8080/api/v1/user'
 
   constructor(private http: HttpClient) { }
 
