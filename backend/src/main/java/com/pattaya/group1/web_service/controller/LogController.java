@@ -214,4 +214,8 @@ public class LogController {
         return stringBuilder.toString();
     }
 
+    @ExceptionHandler({EmployeeNotFound.class, DoubleTerminatedEmployeeException.class})
+    public ResponseEntity<String> exception(RuntimeException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
