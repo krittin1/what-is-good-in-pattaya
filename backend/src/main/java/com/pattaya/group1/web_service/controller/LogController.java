@@ -41,7 +41,7 @@ public class LogController {
         }
         employee = buildEmployeeOnLog(log, "Active");
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", log.getChangedFields());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added");
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -58,40 +58,36 @@ public class LogController {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
         }
 
-        for (String changeField : log.getChangedFields()) {
-            setEmployee(changeField, employee, log);
-        }
+        Information information = employee.getInformation();
+        Address address = employee.getInformation().getAddress();
+        if (log.getObject().getName() != null)
+            information.setFirstName(log.getObject().getName());
+        if (log.getObject().getSurname() != null)
+            information.setLastName(log.getObject().getSurname());
+        if (log.getObject().getPostcode() != null)
+            address.setPostcode(log.getObject().getPostcode());
+        if (log.getObject().getPhoneNumber() != null)
+            information.setPosition(log.getObject().getPosition());
+        if (log.getObject().getPhoneNumber() != null)
+            information.setPhoneNumber(log.getObject().getPhoneNumber());
+        if (log.getObject().getAddress() != null)
+            address.setCurrentAddress(log.getObject().getAddress());
+
         employeeRepository.save(employee);
 
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Edited", log.getChangedFields());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Edited");
         // Create new Log
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user updated", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         return ResponseEntity.status(200).body(map);
-    }
-
-    private void setEmployee(String changeField, Employee employee, Log log) {
-        Information information = employee.getInformation();
-        Address address = employee.getInformation().getAddress();
-        if ("name".equals(changeField))
-            information.setFirstName(log.getObject().getName());
-        if ("surname".equals(changeField))
-            information.setLastName(log.getObject().getSurname());
-        if ("postcode".equals(changeField))
-            address.setPostcode(log.getObject().getPostcode());
-        if ("position".equals(changeField))
-            information.setPosition(log.getObject().getPosition());
-        if ("phoneNumber".equals(changeField))
-            information.setPhoneNumber(log.getObject().getPhoneNumber());
-        if ("address".equals(changeField))
-            address.setCurrentAddress(log.getObject().getAddress());
 
     }
 
-    @DeleteMapping("/user")
-    public ResponseEntity<Map<String, String>> deleteUser(@RequestBody Log log) {
-        Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+
+    @DeleteMapping("/user/{id}")
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestBody Log log) {
+        Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
         }
@@ -100,7 +96,7 @@ public class LogController {
         }
         employee.setStatus("Terminated");
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", log.getChangedFields());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated");
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -155,7 +151,7 @@ public class LogController {
     public List<Employee> getEmployee(@PathVariable(required = true) String id) {
         Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
-            throw new EmployeeNotFound("Cannot find the user whose id is `" + id  + "` in the database.");
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
         return Collections.singletonList(employeeRepository.findByUserId(id));
     }
@@ -181,14 +177,11 @@ public class LogController {
     }
 
 
-    private ChangeLog buildChangeLogOnLog(Log log, String action, List<String> changedFields) {
-        if (changedFields != null) {
-            logger.info(changedFields.toString());
-        }
+    private ChangeLog buildChangeLogOnLog(Log log, String action) {
         return new ChangeLog.Builder()
                 .withAction(action)
                 .withAdminId(log.getAdminId())
-                .withMessage(log.getMessage() + ((changedFields != null) ? ("Fields Changed => " + changedFields.toString()) : ""))
+                .withMessage(log.getMessage())
                 .withUserId(log.getObject().getUserId())
                 .withTimestamp(new Date().toString()).build();
     }
