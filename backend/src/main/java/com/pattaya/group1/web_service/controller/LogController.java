@@ -180,13 +180,19 @@ public class LogController {
     }
 
     // Helper endpoints for debugging only
-    @GetMapping({"/user/{id}", "/users"})
-    public List<Employee> getEmployee(@PathVariable(required = false) String id) {
-        if (id == null) {
-            return employeeRepository.findAll();
-        } else {
-            return Collections.singletonList(employeeRepository.findByUserId(id));
+    @GetMapping("/users/{id}")
+    public List<Employee> getEmployee(@PathVariable(required = true) String id) {
+        Employee employee = employeeRepository.findByUserId(id);
+        if (employee == null) {
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + id  + "` in the database.");
         }
+        return Collections.singletonList(employeeRepository.findByUserId(id));
+    }
+
+
+    @GetMapping("/users")
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
 
