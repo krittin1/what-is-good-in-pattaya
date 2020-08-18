@@ -1,2 +1,2 @@
-#! bash
-docker-compose down 
+#! /bin/bash
+mongo pattayaDB --eval "db.dropDatabase()"

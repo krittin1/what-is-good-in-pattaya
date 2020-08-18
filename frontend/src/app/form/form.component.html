@@ -19,13 +19,13 @@
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>First name</mat-label>
-                  <input matInput id="firstname"  formControlName="name">
+                  <input matInput id="firstname" formControlName="name">
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>Last Name </mat-label>
-                  <input matInput id="lastname"  formControlName="surname">
+                  <input matInput id="lastname" formControlName="surname">
                 </mat-form-field>
               </td>
             </tr>
@@ -33,13 +33,13 @@
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>ID card</mat-label>
-              <input matInput id="id_card" formControlName="idCard"/>
+              <input matInput id="id_card" formControlName="idCard" />
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Date of birth</mat-label>
-              <input matInput id="date_of_birth" formControlName="dateOfBirth"/>
+              <input matInput id="date_of_birth" formControlName="dateOfBirth" />
             </mat-form-field>
           </p>
           <p>
@@ -52,8 +52,7 @@
             <mat-form-field class="example-full-width">
               <mat-label>Telephone</mat-label>
               <span matPrefix>+66 &nbsp;</span>
-              <input id="phone_number" matInput placeholder="" formControlName="phoneNumber"/>
-              <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+              <input id="phone_number" matInput placeholder="" formControlName="phoneNumber" />
             </mat-form-field>
           </form>
           <p>
@@ -77,35 +76,21 @@
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Message</mat-label>
-              <input matInput id="message" formControlName="message"/>
+              <input matInput id="message" formControlName="message" />
             </mat-form-field>
           </p>
         </form>
       </div>
     </mat-card>
     <div class="submit-component">
-      <!-- <button (click)="debug()">TEST</button> -->
+    
 
-      <!-- <button
-      class="submit-btn"
-      mat-raised-button
-      color="primary"
-      (click)="debug()">
-      Submit Test
-      </button> -->
-
-      <button
-        class="submit-btn"
-        routerLink="/history"
-        mat-raised-button
-        color="primary"
-        id= "submit_btn"
-        (click)="debug()"
-      >
-      Submit
+      <button class="submit-btn" routerLink="/history" mat-raised-button color="primary" id="submit_btn"
+        (click)="debug()">
+        Submit
       </button>
 
-      <button class="cancel-btn" routerLink="/form"  mat-raised-button disabled>
+      <button class="cancel-btn"  mat-raised-button disabled>
         Cancel
       </button>
 

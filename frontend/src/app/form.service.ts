@@ -11,7 +11,7 @@ export class FormService {
 
   getAllForm(): Observable<LogResponse> {
     return this.http.get<LogResponse>(
-      'http://localhost:8080/api/v1/logs?page=0'
+      'http://159.65.129.76:8080/api/v1/logs?page=0'
     );
   }
 }
