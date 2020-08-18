@@ -1,2 +1,2 @@
-#! bash
+#! /bin/bash
 docker-compose down 
