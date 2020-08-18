@@ -18,16 +18,16 @@ export class FormComponent implements OnInit {
   object: Object;
 
   public addForm = new FormGroup({
-    userId: new FormControl('Nattawitjan'),
-    name: new FormControl('Nattawit'),
-    surname: new FormControl('Janjaroen'),
-    idCard: new FormControl('1111111111111'),
-    postcode: new FormControl('10200'),
-    dateOfBirth: new FormControl('27/09/1995'),
-    position: new FormControl('Junior Backend Developer'),
-    startDate: new FormControl('01/07/2020'),
-    phoneNumber: new FormControl('0824933423'),
-    address: new FormControl('Bangkok'),
+    userId: new FormControl(''),
+    name: new FormControl(''),
+    surname: new FormControl(''),
+    idCard: new FormControl(''),
+    postcode: new FormControl(''),
+    dateOfBirth: new FormControl(''),
+    position: new FormControl(''),
+    startDate: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    address: new FormControl(''),
   });
 
   constructor(private service: ConfigService) {}
@@ -50,22 +50,10 @@ export class FormComponent implements OnInit {
         this.addForm.get('phoneNumber').value,
         this.addForm.get('address').value
       ),
-      '11/08/2020 11.20 A.M.'
+      "a few minute ago."
     );
-    // this.object = new Object("Active",
-    //   this.addForm.get('userId').value,
-    //   this.addForm.get('name').value,
-    //   this.addForm.get('surname').value,
-    //   this.addForm.get('idCard').value,
-    //   this.addForm.get('postcode').value,
-    //   this.addForm.get('dateOfBirth').value,
-    //   this.addForm.get('position').value,
-    //   this.addForm.get('startDate').value,
-    //   this.addForm.get('phoneNumber').value,
-    //   this.addForm.get('address').value
-    //   );
+    
     console.log(this.form);
-    // console.log(this.addForm.get('userId').value)
     this.service.addForm(this.form).subscribe((data) => {
       console.log(data);
     });
