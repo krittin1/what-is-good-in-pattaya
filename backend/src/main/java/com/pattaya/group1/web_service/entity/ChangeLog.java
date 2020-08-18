@@ -1,7 +1,13 @@
 package com.pattaya.group1.web_service.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.Id;
+
 public class ChangeLog {
+    @Id
+    @JsonIgnore
+    private String id;
     private String userId;
     private String action;
     private String adminId;

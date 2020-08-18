@@ -3,7 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Form } from '../models/form';
 import { Object } from '../models/object';
@@ -18,19 +18,19 @@ export class FormComponent implements OnInit {
   object: Object;
 
   public addForm = new FormGroup({
-    userId: new FormControl(''),
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    idCard: new FormControl(''),
-    postcode: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    position: new FormControl(''),
-    startDate: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    address: new FormControl(''),
+    userId: new FormControl(),
+    name: new FormControl(),
+    surname: new FormControl(),
+    idCard: new FormControl(),
+    postcode: new FormControl(),
+    dateOfBirth: new FormControl(),
+    position: new FormControl(),
+    startDate: new FormControl(),
+    phoneNumber: new FormControl(),
+    address: new FormControl(),
   });
 
-  constructor(private service: ConfigService) {}
+  constructor(private service: ConfigService) { }
 
   debug() {
     this.form = new Form(
@@ -52,13 +52,19 @@ export class FormComponent implements OnInit {
       ),
       "a few minute ago."
     );
-    
     console.log(this.form);
     this.service.addForm(this.form).subscribe((data) => {
       console.log(data);
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
 }
+
+// export class InputErrorsExample {
+//   emailFormControl = new FormControl('', [
+//     Validators.required,
+//     Validators.email,
+//   ]);
+// }
