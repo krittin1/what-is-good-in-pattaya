@@ -12,6 +12,7 @@ import com.pattaya.group1.web_service.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -180,13 +181,19 @@ public class LogController {
     }
 
     // Helper endpoints for debugging only
-    @GetMapping({"/user/{id}", "/users"})
-    public List<Employee> getEmployee(@PathVariable(required = false) String id) {
-        if (id == null) {
-            return employeeRepository.findAll();
-        } else {
-            return Collections.singletonList(employeeRepository.findByUserId(id));
+    @GetMapping("/users/{id}")
+    public List<Employee> getEmployee(@PathVariable(required = true) String id) {
+        Employee employee = employeeRepository.findByUserId(id);
+        if (employee == null) {
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + id  + "` in the database.");
         }
+        return Collections.singletonList(employeeRepository.findByUserId(id));
+    }
+
+
+    @GetMapping("/users")
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
 
@@ -208,4 +215,8 @@ public class LogController {
         return stringBuilder.toString();
     }
 
+    @ExceptionHandler({EmployeeNotFound.class, DoubleTerminatedEmployeeException.class})
+    public ResponseEntity<String> exception(RuntimeException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }
