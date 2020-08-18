@@ -75,12 +75,11 @@ Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     # Table Should Contain    id: table_history    ${MESSAGE}
     Wait Until Page Contains    User History
-    Table Cell Should Contain    id: table_history1    2    2    ${ADMIN_ID}  
-    Table Cell Should Contain    id: table_history1    2    3    ${ADMIN_USER}  
-    Table Cell Should Contain    id: table_history1    2    4    ${ACTION}
-    Table Cell Should Contain    id: table_history1    2    5    ${USER_ID}
-    Table Cell Should Contain    id: table_history1    2    6    ${NAME}
-    Table Cell Should Contain    id: table_history1    2    8    ${MESSAGE}
+    Table Cell Should Contain    id: table_history1    2    1    ${ADMIN_ID}  
+    Table Cell Should Contain    id: table_history1    2    2    ${ADMIN_USER}  
+    Table Cell Should Contain    id: table_history1    2    3    ${ACTION}
+    Table Cell Should Contain    id: table_history1    2    4    ${NAME}    ${SURNAME}
+    Table Cell Should Contain    id: table_history1    2    6    ${MESSAGE}
 
 Click Edit Button
     Click Button    id: edit_btn
