@@ -7,8 +7,8 @@
       <div class="form-card">
         <form class="example-form" [formGroup]="addForm">
           <mat-form-field class="example-full-width">
-            <mat-label>Allianz technology</mat-label>
-            <input matInput disabled value="Form" />
+            <mat-label>Allianz Technology (Thailand) Co. Ltd.</mat-label>
+            <input matInput disabled value="Add Form" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>User ID</mat-label>
@@ -18,7 +18,7 @@
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
-                  <mat-label>First name</mat-label>
+                  <mat-label>First Name</mat-label>
                   <input matInput id="firstname" formControlName="name" required minlength=2>
                 </mat-form-field>
               </td>
@@ -37,9 +37,15 @@
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field class="example-full-width">
-              <mat-label>Date of birth</mat-label>
+            <!-- <mat-form-field class="example-full-width">
+              <mat-label>Date of  Birth</mat-label>
               <input matInput id="date_of_birth" formControlName="dateOfBirth">
+            </mat-form-field> -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Date of  Birth</mat-label>
+              <input id="date_of_birth" formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </p>
           <p>
@@ -51,7 +57,7 @@
             
 
             <mat-form-field appearance="fill" class="drop-down-postion" >
-              <mat-label id="position">Select your position (required)</mat-label>
+              <mat-label id="position">Select your position </mat-label>
               <select matNativeControl required formControlName="position" id="position" >
                 <option label="-- Position --"></option>
                 <option value="Junior Frontend Develope" >Junior Frontend Developer</option>
@@ -73,20 +79,26 @@
          
            <p>
             <mat-form-field class="example-full-width">
-              <mat-label>Address 1</mat-label>
+              <mat-label>Province</mat-label>
               <textarea matInput id="address" formControlName="address"></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
-              <mat-label>Post code</mat-label>
+              <mat-label>Postcode</mat-label>
               <textarea matInput id="post_code" formControlName="postcode"></textarea>
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field class="example-full-width">
+            <!-- <mat-form-field class="example-full-width">
               <mat-label>Start date</mat-label>
               <textarea matInput id="start_date" formControlName="startDate"></textarea>
+            </mat-form-field> -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Start Date</mat-label>
+              <input id="start_date" formControlName="startDate" matInput [matDatepicker]="picker1">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
           </p>
     

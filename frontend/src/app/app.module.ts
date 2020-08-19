@@ -38,6 +38,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
+    MatNativeDateModule,
     MatDatepickerModule,
     MatIconModule,
     MatInputModule,

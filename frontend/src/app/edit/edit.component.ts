@@ -9,6 +9,7 @@ import { ConfigService } from '../config/config.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -25,8 +26,8 @@ export class EditComponent implements OnInit {
     idCard: new FormControl('1111111111111'),
     postcode: new FormControl('10200'),
     dateOfBirth: new FormControl('11/10/1997'),
-    position: new FormControl('Junior Backend Develope'),
-    startDate: new FormControl('01/07/2020'),
+    position: new FormControl('Junior Backend Developer'),
+    startDate: new FormControl('MatNativeDateModule'),
     phoneNumber: new FormControl('0953569497'),
     address: new FormControl('Bangkok'),
   });
