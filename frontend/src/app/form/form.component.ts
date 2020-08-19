@@ -3,7 +3,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
-import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Form } from '../models/form';
 import { Object } from '../models/object';
@@ -14,12 +14,11 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-
   form: Form;
   object: Object;
 
   selectFormControl = new FormControl('', Validators.required);
-  
+
   public addForm = new FormGroup({
     userId: new FormControl(),
     name: new FormControl(),
@@ -31,11 +30,13 @@ export class FormComponent implements OnInit {
     startDate: new FormControl(),
     phoneNumber: new FormControl(),
     address: new FormControl(),
+    message: new FormControl(),
   });
 
-  constructor(private service: ConfigService) { }
+  constructor(private service: ConfigService) {}
 
   debug() {
+    const currentDate = new Date();
     this.form = new Form(
       'New Employee added',
       '251195',
@@ -53,7 +54,7 @@ export class FormComponent implements OnInit {
         this.addForm.get('phoneNumber').value,
         this.addForm.get('address').value
       ),
-      "a few minute ago."
+      currentDate.toUTCString()
     );
     console.log(this.form);
     this.service.addForm(this.form).subscribe((data) => {
@@ -61,7 +62,13 @@ export class FormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
-  imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule, MatSelectModule, FormControl];
+  ngOnInit(): void {}
+  imports: [
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatSelectModule,
+    FormControl
+  ];
 }
-
