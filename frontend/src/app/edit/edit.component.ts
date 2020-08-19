@@ -67,17 +67,4 @@ export class EditComponent implements OnInit {
       console.log(data);
     });
   }
-
-  deleteUser() {
-    this.service.deleteUser('JirapornKan').subscribe((res) => {
-      this.router.navigateByUrl('/history');
-    });
-  }
-  // updateUser(){
-
-  //   this.service.updateUser('JirapornKan').subscribe((res) => {
-
-  //     this.router.navigateByUrl('/history');
-  // })
-  // }
 }

@@ -1,109 +1,112 @@
 <br />
 <h2 style="margin-left: 75px;">Allianz User Form.</h2>
 <div class="parent">
-    <div class="div1"></div>
-    <div class="div2">
-        <mat-card>
-            <div class="form-card">
-                <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Allianz technoligy</mat-label>
-                        <input matInput disabled value="Form" />
-                    </mat-form-field>
-                    <mat-form-field class="example-full-width">
-                        <mat-label>User ID</mat-label>
-                        <input matInput id="user_id">
-                    </mat-form-field>
-                    <table class="example-full-width" cellspacing="0">
-                        <tr>
-                            <td>
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>First name</mat-label>
-                                    <input matInput id="firstname">
-                                </mat-form-field>
-                            </td>
-                            <td>
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Last Name </mat-label>
-                                    <input matInput id="lastname">
-                                </mat-form-field>
-                            </td>
-                        </tr>
-                    </table>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>ID card</mat-label>
-                            <input matInput id="id_card">
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Date of birth</mat-label>
-                            <input matInput id="date_of_birth">
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Position</mat-label>
-                            <input matInput id="position">
-                        </mat-form-field>
-                    </p>
-                    <form class="example-form">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Telephone</mat-label>
-                            <span matPrefix>+66 &nbsp;</span>
-                            <input id="phone_number" matInput placeholder="">
+  <div class="div1"></div>
+  <div class="div2">
+    <mat-card>
+      <div class="form-card">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Allianz technology</mat-label>
+            <input matInput disabled value="Form" />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>User ID</mat-label>
+            <input matInput id="user_id" />
+          </mat-form-field>
+          <table class="example-full-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>First name</mat-label>
+                  <input matInput id="firstname" />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="example-full-width">
+                  <mat-label>Last Name </mat-label>
+                  <input matInput id="lastname" />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>ID card</mat-label>
+              <input matInput id="id_card" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Date of birth</mat-label>
+              <input matInput id="date_of_birth" />
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Position</mat-label>
+              <input matInput id="position" />
+            </mat-form-field>
+          </p>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Telephone</mat-label>
+              <span matPrefix>+66 &nbsp;</span>
+              <input id="phone_number" matInput placeholder="" />
+            </mat-form-field>
+          </form>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address 1</mat-label>
+              <textarea matInput id="address"></textarea>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Post code</mat-label>
+              <textarea matInput id="post_code"></textarea>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Start date</mat-label>
+              <textarea matInput id="start_date"></textarea>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Message</mat-label>
+              <input matInput id="message" />
+            </mat-form-field>
+          </p>
+        </form>
+      </div>
+    </mat-card>
 
-                        </mat-form-field>
-                    </form>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Address 1</mat-label>
-                            <textarea matInput id="address"></textarea>
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Post code</mat-label>
-                            <textarea matInput id="post_code"></textarea>
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Start date</mat-label>
-                            <textarea matInput id="start_date"></textarea>
-                        </mat-form-field>
-                    </p>
-                    <p>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Message</mat-label>
-                            <input matInput id="message">
-                        </mat-form-field>
-                    </p>
-                </form>
-            </div>
-        </mat-card>
+    <div class="edit-component">
+      <button
+        class="edit-btn"
+        (click)="updateUser()"
+        mat-raised-button
+        color="primary"
+        id="edit_btn"
+      >
+        Save
+      </button>
 
+      <button class="cancel-btn" routerLink="/menu" mat-raised-button>
+        Cancel
+      </button>
 
-        <div class="edit-component">
-            <button class="edit-btn" (click)="updateUser()" mat-raised-button color="primary" id="edit_btn">
-                Save
-            </button>
+      <mat-label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or
+      </mat-label>
 
-            <button class="cancel-btn" routerLink="/menu" mat-raised-button>
-                Cancel
-            </button>
+      <button class="delete-btn" mat-raised-button color="warn" id="delete_btn">
+        Delete
+      </button>
 
-            <mat-label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                or
-            </mat-label>
-
-            <button class="delete-btn" (click)="deleteUser()" mat-raised-button color="warn" id="delete_btn">
-                Delete
-            </button>
-
-            <!-- <button 
+      <!-- <button 
          type="button" 
          class="delete-btn" 
          routerLink="/history"
@@ -114,7 +117,6 @@
           id= "delete_btn">
          Delete
         </button>  -->
-
-        </div>
     </div>
+  </div>
 </div>
