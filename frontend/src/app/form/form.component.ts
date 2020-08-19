@@ -42,7 +42,7 @@ export class FormComponent implements OnInit {
       '251195',
       'chatchanokwon',
       new Object(
-        'Added',
+        'Add',
         this.addForm.get('userId').value,
         this.addForm.get('name').value,
         this.addForm.get('surname').value,

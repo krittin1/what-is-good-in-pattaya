@@ -21,11 +21,9 @@ export class ConfigService {
   }
 
   getUserById(userId: String): Observable<Form> {
-    return this.http.get<Form>(this.url + '/' + userId);
+    return this.http.get<Form>(this.url+'s/' + userId);
   }
-  updateUser(employee: any, userId: String): Observable<HttpResponse<Form>> {
-    return this.http.put<Form>(this.url + '/' + userId, employee, {
-      observe: 'response',
-    });
+  updateUser(employee: any): Observable<HttpResponse<Form>> {
+    return this.http.put<Form>(this.url + '/' , employee, { observe: 'response' });
   }
 }
