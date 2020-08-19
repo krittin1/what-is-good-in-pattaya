@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../config/config.service';
-import { config } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,7 +8,7 @@ import { config } from 'rxjs';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
     this.configService
       .deleteUser('251184', '251195', new Date().toUTCString())
       .subscribe((data) => {
+        this.router.navigateByUrl('/history');
         console.log(data);
       });
   }
