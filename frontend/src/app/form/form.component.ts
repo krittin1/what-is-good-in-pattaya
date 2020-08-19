@@ -30,6 +30,7 @@ export class FormComponent implements OnInit {
     startDate: new FormControl(),
     phoneNumber: new FormControl(),
     address: new FormControl(),
+    message: new FormControl(),
   });
 
   constructor(private service: ConfigService) {}
