@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
   object: Object;
 
   public updateForm = new FormGroup({
-    userId: new FormControl('251195'),
+    userId: new FormControl('251161'),
     name: new FormControl('Veeraphat'),
     surname: new FormControl('Amornsirikul'),
     idCard: new FormControl('1111111111111'),
