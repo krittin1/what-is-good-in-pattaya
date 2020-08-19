@@ -18,3 +18,8 @@ h2 {
 
   font-family: "Comfortaa", cursive;
 }
+
+::ng-deep .mat-sort-header-arrow {
+  transform: none !important;
+  opacity: 1 !important;
+}

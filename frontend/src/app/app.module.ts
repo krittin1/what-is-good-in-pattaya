@@ -28,6 +28,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     ReactiveFormsModule,
     FormsModule,
-    
+    MatSelectModule,
     HttpClientModule,
   ],
 
