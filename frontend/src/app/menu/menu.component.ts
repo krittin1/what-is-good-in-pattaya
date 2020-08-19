@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   deleteUser() {
     this.configService
-      .deleteUser('8', '2', new Date().toUTCString())
+      .deleteUser('251184', '251195', new Date().toUTCString())
       .subscribe((data) => {
         this.router.navigateByUrl('/history');
         console.log(data);
