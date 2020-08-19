@@ -37,12 +37,14 @@ public class LogController {
     public ResponseEntity<Map<String, String>> createUser(@RequestBody Log log) {
         logger.info("Create => " + log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+        boolean addedAgain = false;
         if (employee != null) {
             employeeRepository.deleteByUserId(log.getObject().getUserId());
+            addedAgain = true;
         }
         employee = buildEmployeeOnLog(log);
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId() + ((addedAgain) ? " again." : ""));
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
