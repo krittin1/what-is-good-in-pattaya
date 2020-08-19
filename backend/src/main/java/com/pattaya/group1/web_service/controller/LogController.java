@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
 @RestController
 @RequestMapping("/api/v1")
 public class LogController {
@@ -64,29 +63,29 @@ public class LogController {
         List<String> changes = new ArrayList<>();
         Information information = employee.getInformation();
         Address address = employee.getInformation().getAddress();
-        if (log.getObject().getName() != null) {
+        if (log.getObject().getName() != null && log.getObject().getName() != information.getFirstName()) {
             information.setFirstName(log.getObject().getName());
             changes.add("first name");
         }
-        if (log.getObject().getSurname() != null) {
+        if (log.getObject().getSurname() != null && log.getObject().getSurname() != information.getLastName()) {
             information.setLastName(log.getObject().getSurname());
             changes.add("last name");
         }
-        if (log.getObject().getPostcode() != null) {
+        if (log.getObject().getPostcode() != null && log.getObject().getPostcode() != information.getAddress().getPostcode()) {
             address.setPostcode(log.getObject().getPostcode());
             changes.add("postcode");
         }
-        if (log.getObject().getPosition() != null) {
+        if (log.getObject().getPosition() != null && log.getObject().getPosition() != information.getPosition()) {
 
 
             information.setPosition(log.getObject().getPosition());
             changes.add("position");
         }
-        if (log.getObject().getPhoneNumber() != null) {
+        if (log.getObject().getPhoneNumber() != null && log.getObject().getPhoneNumber() != information.getPhoneNumber()) {
             information.setPhoneNumber(log.getObject().getPhoneNumber());
             changes.add("phone number");
         }
-        if (log.getObject().getAddress() != null) {
+        if (log.getObject().getAddress() != null && log.getObject().getAddress() != information.getAddress().getCurrentAddress()) {
             address.setCurrentAddress(log.getObject().getAddress());
             changes.add("address");
         }
@@ -106,18 +105,18 @@ public class LogController {
 
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestBody Log log) {
-        logger.info("Terminate => " + log.toString());
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestParam String adminId, @RequestParam String timestamp) {
+        logger.info("Terminate => user " + id);
         Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
-            throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
-        if ("Terminated".equals(employee.getStatus())) {
-            throw new DoubleTerminatedEmployeeException("Employee whose id is " + log.getObject().getUserId() + " is already terminated");
+        if ("TERMINATED".equals(employee.getStatus())) {
+            throw new DoubleTerminatedEmployeeException("Employee whose id is " + id + " is already terminated");
         }
         employee.setStatus("TERMINATED");
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", "Terminated user " + log.getObject().getUserId());
+        ChangeLog changeLog = new ChangeLog.Builder().withUserId(id).withAction("Terminated").withAdminId(adminId).withMessage("Terminated user " + id).withTimestamp(timestamp).build();
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));

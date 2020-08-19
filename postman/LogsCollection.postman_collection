@@ -239,7 +239,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"message\": \"{{update_message}}\",\r\n    \"adminId\": \"{{update_adminId}}\",\r\n    \"adminUser\": \"{{update_adminUser}}\",\r\n    \"object\": {\r\n        \"action\": null,\r\n        \"userId\": \"{{userId}}\",\r\n        \"name\": null,\r\n        \"surname\": \"{{update_surname}}\",\r\n        \"idCard\": null,\r\n        \"postcode\": \"{{update_postcode}}\",\r\n        \"dateOfBirth\": null,\r\n        \"position\": \"{{update_position}}\",\r\n        \"startDate\": null,\r\n        \"phoneNumber\": null,\r\n        \"address\": null\r\n    },\r\n    \"timestamp\": \"{{timestamp}}\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -247,7 +247,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://159.65.129.76:8080/api/v1/user/{{userId}}",
+					"raw": "http://159.65.129.76:8080/api/v1/user/{{userId}}?adminId={{update_adminId}}&timestamp={{timestamp}}",
 					"protocol": "http",
 					"host": [
 						"159",
@@ -261,6 +261,16 @@
 						"v1",
 						"user",
 						"{{userId}}"
+					],
+					"query": [
+						{
+							"key": "adminId",
+							"value": "{{update_adminId}}"
+						},
+						{
+							"key": "timestamp",
+							"value": "{{timestamp}}"
+						}
 					]
 				}
 			},
