@@ -18,58 +18,61 @@ export class EditComponent implements OnInit {
   form: Form;
   object: Object;
 
-  public editForm = new FormGroup({
-    userId: new FormControl('Nattawitjan'),
-    name: new FormControl('Nattawit'),
-    surname: new FormControl('Janjaroen'),
-    idCard: new FormControl('1111111111111'),
-    postcode: new FormControl('10200'),
-    dateOfBirth: new FormControl('27/09/1995'),
-    position: new FormControl('Junior Backend Developer'),
-    startDate: new FormControl('01/07/2020'),
-    phoneNumber: new FormControl('0824933423'),
-    address: new FormControl('Bangkok'),
+  public updateForm = new FormGroup({
+    userId: new FormControl(''),
+    name: new FormControl(''),
+    surname: new FormControl(''),
+    idCard: new FormControl(''),
+    postcode: new FormControl(''),
+    dateOfBirth: new FormControl(''),
+    position: new FormControl(''),
+    startDate: new FormControl(''),
+    phoneNumber: new FormControl(''),
+    address: new FormControl(''),
   });
   constructor(private service: ConfigService, private router: Router) {}
 
   ngOnInit(): void {
-    this.service.getUserById('JirapornKan').subscribe((res) => {});
-  }
+    this.service.getUserById('251170').subscribe((res)=>{
+
+    })
+   }
+
 
   imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
 
   updateUser() {
     const currentDate = new Date();
     this.form = new Form(
-      'New Employee added',
+      'Edited Employee',
       '251195',
       'chatchanokwon',
       new Object(
-        'Added',
-        this.editForm.get('userId').value,
-        this.editForm.get('name').value,
-        this.editForm.get('surname').value,
-        this.editForm.get('idCard').value,
-        this.editForm.get('postcode').value,
-        this.editForm.get('dateOfBirth').value,
-        this.editForm.get('position').value,
-        this.editForm.get('startDate').value,
-        this.editForm.get('phoneNumber').value,
-        this.editForm.get('address').value
+        'Edit',
+        this.updateForm.get('userId').value,
+        this.updateForm.get('name').value,
+        this.updateForm.get('surname').value,
+        this.updateForm.get('idCard').value,
+        this.updateForm.get('postcode').value,
+        this.updateForm.get('dateOfBirth').value,
+        this.updateForm.get('position').value,
+        this.updateForm.get('startDate').value,
+        this.updateForm.get('phoneNumber').value,
+        this.updateForm.get('address').value
       ),
       currentDate.toUTCString()
     );
 
     console.log(this.form);
-
-    this.service.updateUser(this.form, 'JirapornKan').subscribe((data) => {
+    
+    this.service.updateUser(this.form).subscribe((data) => {
       this.router.navigateByUrl('/history');
       console.log(data);
     });
   }
 
   deleteUser() {
-    this.service.deleteUser('JirapornKan').subscribe((res) => {
+    this.service.deleteUser('251170').subscribe((res) => {
       this.router.navigateByUrl('/history');
     });
   }
