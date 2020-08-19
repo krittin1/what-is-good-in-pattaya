@@ -29,6 +29,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatSelectModule } from '@angular/material/select';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
+    MatNativeDateModule,
     MatDatepickerModule,
     MatIconModule,
     MatInputModule,

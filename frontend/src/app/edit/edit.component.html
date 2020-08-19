@@ -37,9 +37,11 @@
                       </mat-form-field>
                     </p>
                     <p>
-                      <mat-form-field class="example-full-width">
-                        <mat-label>Date of Birth</mat-label>
-                        <input matInput id="date_of_birth" formControlName="dateOfBirth">
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Date of  Birth</mat-label>
+                        <input id="date_of_birth" formControlName="dateOfBirth" matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                       </mat-form-field>
                     </p>
                     <p>
@@ -51,7 +53,7 @@
                       
           
                       <mat-form-field appearance="fill" class="drop-down-postion" >
-                        <mat-label id="position">Select your position (required)</mat-label>
+                        <mat-label id="position">Select your position </mat-label>
                         <select matNativeControl required formControlName="position" id="position" >
                           <option label="-- Position --"></option>
                           <option value="Junior Frontend Develope" >Junior Frontend Developer</option>
@@ -85,9 +87,15 @@
                       </mat-form-field>
                     </p>
                     <p>
-                      <mat-form-field class="example-full-width">
+                      <!-- <mat-form-field class="example-full-width">
                         <mat-label>Start date</mat-label>
                         <textarea matInput id="start_date" formControlName="startDate"></textarea>
+                      </mat-form-field> -->
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Start Date</mat-label>
+                        <input id="start_date" formControlName="startDate" matInput [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
                       </mat-form-field>
                     </p>
             
