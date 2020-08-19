@@ -33,7 +33,7 @@ export class EditComponent implements OnInit {
   constructor(private service: ConfigService, private router: Router) { }
 
   ngOnInit(): void {
-    this.service.getUserById('JirapornKan').subscribe((res)=>{
+    this.service.getUserById('251170').subscribe((res)=>{
 
     })
    }
@@ -48,7 +48,7 @@ export class EditComponent implements OnInit {
 
   updateUser() {
     this.form = new Form(
-      'New Employee added',
+      'Edited Employee',
       '251195',
       'chatchanokwon',
       new Object(
@@ -76,7 +76,7 @@ export class EditComponent implements OnInit {
   }
 
   deleteUser() {
-    this.service.deleteUser('JirapornKan').subscribe((res) => {
+    this.service.deleteUser('251170').subscribe((res) => {
       this.router.navigateByUrl('/history');
     })
   }
