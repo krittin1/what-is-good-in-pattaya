@@ -1,6 +1,6 @@
 *** Variables ***
+# ${URL}    http://localhost:4200/#/login
 ${URL}    http://159.65.131.126/#/login
-
 *** Keywords ***
 Add New Employee
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${ACTION}    ${USER_ID}    ${FORM_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}    ${DATE_OF_BIRTH}    ${POSITION}    ${PHONE_NUMBER}    ${ADDRESS}    ${START_DATE}    ${POST_CODE}    ${ID_CARD}
@@ -61,7 +61,7 @@ Fill Employee's Info
     Input Text    id: lastname    ${SURNAME}
     Input Text    id: id_card    ${ID_CARD}
     Input Text    id: date_of_birth    ${DATE_OF_BIRTH}
-    Input Text    id: position     backend 
+    Select From List By Value    id: position        Junior Backend Developer
     Input Text    id: phone_number    ${PHONE_NUMBER}
     Input Text    id: address    ${ADDRESS}
     Input Text    id: post_code    ${POST_CODE}    
@@ -75,10 +75,9 @@ Change To History Page
     # Table Should Contain    id: table_history    ${MESSAGE}
     Wait Until Page Contains    User History
     Table Cell Should Contain    id: table_history1    2    1    ${ADMIN_ID}  
-    # Table Cell Should Contain    id: table_history1    2    2    ${ADMIN_USER}  
-    Table Cell Should Contain    id: table_history1    2    3    ${ACTION}
-    Table Cell Should Contain    id: table_history1    2    4    ${NAME}    ${SURNAME}
-    Table Cell Should Contain    id: table_history1    2    6    ${MESSAGE}
+    Table Cell Should Contain    id: table_history1    2    2    ${ACTION}
+    Table Cell Should Contain    id: table_history1    2    3    ${NAME}    ${SURNAME}
+    Table Cell Should Contain    id: table_history1    2    5    ${MESSAGE}
 
 Click Edit Button
     Click Button    id: edit_btn
