@@ -1,31 +1,43 @@
 <br />
-<h2 style="margin-left: 75px;">Allianz User Form.</h2>
+<h2 style="margin-left: 75px;">Allianz User Edit Form</h2>
 <div class="parent">
   <div class="div1"></div>
   <div class="div2">
     <mat-card>
       <div class="form-card">
-        <form class="example-form">
+        <form class="example-form" [formGroup]="updateForm">
           <mat-form-field class="example-full-width">
             <mat-label>Allianz technology</mat-label>
             <input matInput disabled value="Form" />
           </mat-form-field>
           <mat-form-field class="example-full-width">
             <mat-label>User ID</mat-label>
-            <input matInput id="user_id" />
+            <input matInput id="user_id" formControlName="userId" required />
           </mat-form-field>
           <table class="example-full-width" cellspacing="0">
             <tr>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>First name</mat-label>
-                  <input matInput id="firstname" />
+                  <input
+                    matInput
+                    id="firstname"
+                    formControlName="name"
+                    required
+                    minlength="2"
+                  />
                 </mat-form-field>
               </td>
               <td>
                 <mat-form-field class="example-full-width">
                   <mat-label>Last Name </mat-label>
-                  <input matInput id="lastname" />
+                  <input
+                    matInput
+                    id="lastname"
+                    formControlName="surname"
+                    required
+                    minlength="2"
+                  />
                 </mat-form-field>
               </td>
             </tr>
@@ -33,80 +45,118 @@
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>ID card</mat-label>
-              <input matInput id="id_card" />
+              <input
+                matInput
+                id="id_card"
+                formControlName="idCard"
+                required
+                minlength="13"
+                maxlength="13"
+              />
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Date of birth</mat-label>
-              <input matInput id="date_of_birth" />
+              <input
+                matInput
+                id="date_of_birth"
+                formControlName="dateOfBirth"
+              />
             </mat-form-field>
           </p>
           <p>
-            <mat-form-field class="example-full-width">
-              <mat-label>Position</mat-label>
-              <input matInput id="position" />
+            <!-- <mat-form-field class="example-full-width">
+                        <mat-label>Position</mat-label>
+                        <input matInput id="position" formControlName="position">
+                      </mat-form-field> -->
+
+            <mat-form-field appearance="fill" class="drop-down-postion">
+              <mat-label id="position"
+                >Select your position (required)</mat-label
+              >
+              <select
+                matNativeControl
+                required
+                formControlName="position"
+                id="position"
+              >
+                <option label="-- Position --"></option>
+                <option value="Junior Frontend Develope"
+                  >Junior Frontend Developer</option
+                >
+                <option value="Junior Backend Developer"
+                  >Junior Backend Developer</option
+                >
+                <option value="Junior Quality Assurance"
+                  >Junior Quality Assurance</option
+                >
+              </select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">
+                This field is required
+              </mat-error>
+              <mat-hint>You can pick up your position here</mat-hint>
             </mat-form-field>
           </p>
-          <form class="example-form">
-            <mat-form-field class="example-full-width">
-              <mat-label>Telephone</mat-label>
-              <span matPrefix>+66 &nbsp;</span>
-              <input id="phone_number" matInput placeholder="" />
-            </mat-form-field>
-          </form>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+66 &nbsp;</span>
+            <input
+              id="phone_number"
+              matInput
+              placeholder=""
+              formControlName="phoneNumber"
+            />
+          </mat-form-field>
+
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Address 1</mat-label>
-              <textarea matInput id="address"></textarea>
+              <textarea
+                matInput
+                id="address"
+                formControlName="address"
+              ></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Post code</mat-label>
-              <textarea matInput id="post_code"></textarea>
+              <textarea
+                matInput
+                id="post_code"
+                formControlName="postcode"
+              ></textarea>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field class="example-full-width">
               <mat-label>Start date</mat-label>
-              <textarea matInput id="start_date"></textarea>
-            </mat-form-field>
-          </p>
-          <p>
-            <mat-form-field class="example-full-width">
-              <mat-label>Message</mat-label>
-              <input matInput id="message" />
+              <textarea
+                matInput
+                id="start_date"
+                formControlName="startDate"
+              ></textarea>
             </mat-form-field>
           </p>
         </form>
       </div>
     </mat-card>
 
-    <div class="edit-component">
-      <button
-        class="edit-btn"
-        (click)="updateUser()"
-        mat-raised-button
-        color="primary"
-        id="edit_btn"
-      >
-        Save
-      </button>
+    <button class="cancel-btn" routerLink="/menu" mat-raised-button>
+      Cancel
+    </button>
 
-      <button class="cancel-btn" routerLink="/menu" mat-raised-button>
-        Cancel
-      </button>
+    <mat-label>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or
+    </mat-label>
 
-      <mat-label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; or
-      </mat-label>
+    <button class="delete-btn" mat-raised-button color="warn" id="delete_btn">
+      Delete
+    </button>
 
-      <button class="delete-btn" mat-raised-button color="warn" id="delete_btn">
-        Delete
-      </button>
-
-      <!-- <button 
+    <!-- <button 
          type="button" 
          class="delete-btn" 
          routerLink="/history"
@@ -117,6 +167,5 @@
           id= "delete_btn">
          Delete
         </button>  -->
-    </div>
   </div>
 </div>

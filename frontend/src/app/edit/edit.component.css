@@ -15,6 +15,10 @@ td {
   padding-right: 8px;
 }
 
+.drop-down-postion{
+  min-width: 100%;
+}
+
 .parent {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
