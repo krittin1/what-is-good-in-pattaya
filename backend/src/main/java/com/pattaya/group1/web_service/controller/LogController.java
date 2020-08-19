@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
 @RestController
 @RequestMapping("/api/v1")
 public class LogController {
@@ -106,18 +105,18 @@ public class LogController {
 
 
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestBody Log log) {
-        logger.info("Terminate => " + log.toString());
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestParam String adminId, @RequestParam String timestamp) {
+        logger.info("Terminate => user " + id);
         Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
-            throw new EmployeeNotFound("Cannot find the user whose id is `" + log.getObject().getUserId() + "` in the database.");
+            throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
-        if ("Terminated".equals(employee.getStatus())) {
-            throw new DoubleTerminatedEmployeeException("Employee whose id is " + log.getObject().getUserId() + " is already terminated");
+        if ("TERMINATED".equals(employee.getStatus())) {
+            throw new DoubleTerminatedEmployeeException("Employee whose id is " + id + " is already terminated");
         }
         employee.setStatus("TERMINATED");
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Terminated", "Terminated user " + log.getObject().getUserId());
+        ChangeLog changeLog = new ChangeLog.Builder().withUserId(id).withAction("Terminated").withAdminId(adminId).withMessage("Terminated user " + id).withTimestamp(timestamp).build();
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
