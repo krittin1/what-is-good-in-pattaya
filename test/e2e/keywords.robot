@@ -61,7 +61,7 @@ Fill Employee's Info
     Input Text    id: lastname    ${SURNAME}
     Input Text    id: id_card    ${ID_CARD}
     Input Text    id: date_of_birth    ${DATE_OF_BIRTH}
-    Input Text    id: position     backend 
+    Select From List By Value    id: position        Junior Backend Developer
     Input Text    id: phone_number    ${PHONE_NUMBER}
     Input Text    id: address    ${ADDRESS}
     Input Text    id: post_code    ${POST_CODE}    
