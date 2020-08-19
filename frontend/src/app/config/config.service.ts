@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpResponse,
+  HttpParams,
+} from '@angular/common/http';
 import { Form } from '../models/form';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -16,8 +21,16 @@ export class ConfigService {
     return this.http.post<Form>(this.url, employee, { observe: 'response' });
   }
 
-  deleteUser(userId: String): Observable<string> {
-    return this.http.delete<string>(this.url + '/' + userId);
+  deleteUser(
+    userId: String,
+    adminId: string,
+    timestamp: string
+  ): Observable<any> {
+    return this.http.delete<any>(this.url + '/' + userId, {
+      params: new HttpParams()
+        .set('adminId', adminId)
+        .set('timestamp', timestamp),
+    });
   }
 
   getUserById(userId: String): Observable<Form> {
