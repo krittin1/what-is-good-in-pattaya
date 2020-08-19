@@ -1,3 +1,12 @@
 .user circle icon{
     height: 50px;
 }
+
+.menu-spacer {
+    flex: 1 auto;
+  }
+
+.user-label{
+    position: relative;
+    left: 1000px;
+}
