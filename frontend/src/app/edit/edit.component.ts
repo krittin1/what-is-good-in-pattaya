@@ -7,7 +7,7 @@ import { Form } from '../models/form';
 import { Object } from '../models/object';
 import { ConfigService } from '../config/config.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -19,27 +19,29 @@ export class EditComponent implements OnInit {
   object: Object;
 
   public updateForm = new FormGroup({
-    userId: new FormControl(''),
-    name: new FormControl(''),
-    surname: new FormControl(''),
-    idCard: new FormControl(''),
-    postcode: new FormControl(''),
-    dateOfBirth: new FormControl(''),
-    position: new FormControl(''),
-    startDate: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    address: new FormControl(''),
+    userId: new FormControl('251195'),
+    name: new FormControl('Veeraphat'),
+    surname: new FormControl('Amornsirikul'),
+    idCard: new FormControl('1111111111111'),
+    postcode: new FormControl('10200'),
+    dateOfBirth: new FormControl('11/10/1997'),
+    position: new FormControl('Junior Backend Develope'),
+    startDate: new FormControl('01/07/2020'),
+    phoneNumber: new FormControl('0953569497'),
+    address: new FormControl('Bangkok'),
   });
   constructor(private service: ConfigService, private router: Router) {}
 
   ngOnInit(): void {
-    this.service.getUserById('251170').subscribe((res)=>{
+    // this.service.getUserById('251170').subscribe((res)=>{
 
-    })
+    // })
    }
 
 
   imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
+
+  selectFormControl = new FormControl('', Validators.required);
 
   updateUser() {
     const currentDate = new Date();
