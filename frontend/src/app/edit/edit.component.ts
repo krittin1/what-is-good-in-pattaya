@@ -25,7 +25,7 @@ export class EditComponent implements OnInit {
     idCard: new FormControl('1111111111111'),
     postcode: new FormControl('10200'),
     dateOfBirth: new FormControl('11/10/1997'),
-    position: new FormControl('Junior Backend Develope'),
+    position: new FormControl('Junior Backend Developer'),
     startDate: new FormControl('01/07/2020'),
     phoneNumber: new FormControl('0953569497'),
     address: new FormControl('Bangkok'),
