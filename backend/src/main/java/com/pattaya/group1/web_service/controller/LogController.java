@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("/api/v1")
 public class LogController {
@@ -37,12 +37,14 @@ public class LogController {
     public ResponseEntity<Map<String, String>> createUser(@RequestBody Log log) {
         logger.info("Create => " + log.toString());
         Employee employee = employeeRepository.findByUserId(log.getObject().getUserId());
+        boolean addedAgain = false;
         if (employee != null) {
             employeeRepository.deleteByUserId(log.getObject().getUserId());
+            addedAgain = true;
         }
         employee = buildEmployeeOnLog(log);
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId());
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId() + ((addedAgain) ? " again." : ""));
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -74,7 +76,7 @@ public class LogController {
             address.setPostcode(log.getObject().getPostcode());
             changes.add("postcode");
         }
-        if (log.getObject().getPhoneNumber() != null) {
+        if (log.getObject().getPosition() != null) {
 
 
             information.setPosition(log.getObject().getPosition());
@@ -162,18 +164,18 @@ public class LogController {
                     changeLog.getTimestamp()
             ));
         }
-        return new LogResponse((int) changeLogRepository.count(), pageNumber, itemPerPage, logResponseList);
+        return new LogResponse(changeLogPage.getNumberOfElements(), pageNumber, itemPerPage, logResponseList);
 
     }
 
     // Helper endpoints for debugging only
     @GetMapping("/users/{id}")
-    public List<Employee> getEmployee(@PathVariable(required = true) String id) {
+    public Employee getEmployee(@PathVariable(required = true) String id) {
         Employee employee = employeeRepository.findByUserId(id);
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
-        return Collections.singletonList(employeeRepository.findByUserId(id));
+        return employee;
     }
 
 
