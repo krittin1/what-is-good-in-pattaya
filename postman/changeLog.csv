@@ -1,4 +1,4 @@
 message.string(),adminId.string(),action.string(),userId.string(),timestamp.string()
-New Employee Add,"251195",Added,"1", 11/08/2020 11.20 A.M.
-Add Veeraphat,"251195",Added,"6", 11/08/2020 3.30 P.M.
-Add Jiraporn,"251195",Added,"8", 11/08/2020 12.00 P.M.
+New Employee Add,"251195",Added,"1", "Tue, 11 Aug 2020 11:20:03 GMT"
+Add Veeraphat,"251195",Added,"6", "Tue, 11 Aug 2020 15:30:03 GMT"
+Add Jiraporn,"251195",Added,"8", "Tue, 11 Aug 2020 12:00:03 GMT"

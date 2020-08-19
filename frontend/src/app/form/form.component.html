@@ -52,7 +52,7 @@
 
             <mat-form-field appearance="fill" class="drop-down-postion" >
               <mat-label id="position">Select your position (required)</mat-label>
-              <select matNativeControl required formControlName="position">
+              <select matNativeControl required formControlName="position" id="position" >
                 <option label="-- Position --"></option>
                 <option value="Junior Frontend Develope" >Junior Frontend Developer</option>
                 <option value="Junior Backend Developer" >Junior Backend Developer</option>
@@ -69,7 +69,6 @@
               <mat-label>Telephone</mat-label>
               <span matPrefix>+66 &nbsp;</span>
               <input id="phone_number" matInput placeholder="" formControlName="phoneNumber">
-              <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
          
            <p>
@@ -91,12 +90,6 @@
             </mat-form-field>
           </p>
     
-          <p>
-            <mat-form-field class="example-full-width">
-              <mat-label>Message</mat-label>
-              <input matInput id="message" formControlName="message">
-            </mat-form-field>
-          </p>
         </form>
       </div>
     </mat-card>
