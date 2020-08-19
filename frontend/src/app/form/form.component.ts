@@ -20,16 +20,27 @@ export class FormComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
 
   public addForm = new FormGroup({
-    userId: new FormControl('251195'),
-    name: new FormControl('Veeraphat'),
-    surname: new FormControl('Amornsirikul'),
-    idCard: new FormControl('1111111111111'),
-    postcode: new FormControl('10200'),
-    dateOfBirth: new FormControl('11/10/1997'),
-    position: new FormControl('Junior Backend Develope'),
-    startDate: new FormControl('01/07/2020'),
-    phoneNumber: new FormControl('0953569497'),
-    address: new FormControl('Bangkok'),
+    // userId: new FormControl('251161'),
+    // name: new FormControl('Veeraphat'),
+    // surname: new FormControl('Amornsirikul'),
+    // idCard: new FormControl('1111111111111'),
+    // postcode: new FormControl('10200'),
+    // dateOfBirth: new FormControl('11/10/1997'),
+    // position: new FormControl('Junior Backend Develope'),
+    // startDate: new FormControl('01/07/2020'),
+    // phoneNumber: new FormControl('0953569497'),
+    // address: new FormControl('Bangkok'),
+
+    userId: new FormControl(),
+    name: new FormControl(),
+    surname: new FormControl(),
+    idCard: new FormControl(),
+    postcode: new FormControl(),
+    dateOfBirth: new FormControl(),
+    position: new FormControl(),
+    startDate: new FormControl(),
+    phoneNumber: new FormControl(),
+    address: new FormControl(),
   });
 
   constructor(private service: ConfigService) {}

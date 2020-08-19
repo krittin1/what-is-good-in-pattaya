@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+//@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1")
 public class LogController {
@@ -63,29 +64,29 @@ public class LogController {
         List<String> changes = new ArrayList<>();
         Information information = employee.getInformation();
         Address address = employee.getInformation().getAddress();
-        if (log.getObject().getName() != null && log.getObject().getName() != information.getFirstName()) {
+        if (log.getObject().getName() != null && !log.getObject().getName().equals(information.getFirstName())) {
             information.setFirstName(log.getObject().getName());
             changes.add("first name");
         }
-        if (log.getObject().getSurname() != null && log.getObject().getSurname() != information.getLastName()) {
+        if (log.getObject().getSurname() != null && !log.getObject().getSurname().equals(information.getLastName())) {
             information.setLastName(log.getObject().getSurname());
             changes.add("last name");
         }
-        if (log.getObject().getPostcode() != null && log.getObject().getPostcode() != information.getAddress().getPostcode()) {
+        if (log.getObject().getPostcode() != null && !log.getObject().getPostcode().equals(information.getAddress().getPostcode())) {
             address.setPostcode(log.getObject().getPostcode());
             changes.add("postcode");
         }
-        if (log.getObject().getPosition() != null && log.getObject().getPosition() != information.getPosition()) {
+        if (log.getObject().getPosition() != null && !log.getObject().getPosition().equals(information.getPosition())) {
 
 
             information.setPosition(log.getObject().getPosition());
             changes.add("position");
         }
-        if (log.getObject().getPhoneNumber() != null && log.getObject().getPhoneNumber() != information.getPhoneNumber()) {
+        if (log.getObject().getPhoneNumber() != null && !log.getObject().getPhoneNumber().equals(information.getPhoneNumber())) {
             information.setPhoneNumber(log.getObject().getPhoneNumber());
             changes.add("phone number");
         }
-        if (log.getObject().getAddress() != null && log.getObject().getAddress() != information.getAddress().getCurrentAddress()) {
+        if (log.getObject().getAddress() != null && !log.getObject().getAddress().equals(information.getAddress().getCurrentAddress())) {
             address.setCurrentAddress(log.getObject().getAddress());
             changes.add("address");
         }
