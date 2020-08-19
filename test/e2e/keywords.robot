@@ -31,8 +31,6 @@ Delete Employee's Information
     Click Login Button
     Change To Action Page
     Click Delete Button
-    # Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
-    # Click Delete Button To Confirm
     Change To History Page    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Close Form Browser
 
@@ -84,6 +82,7 @@ Click Edit Button
 
 # Check If Employee's Info Appears
 #     [Arguments]    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
+#     Sleep    5
 #     Wait Until Element Contains    id: user_id    ${USER_ID}
 #     Wait Until Element Contains    id: firstname    ${NAME} 
 #     Wait Until Element Contains    id: lastname    ${SURNAME}
@@ -99,6 +98,3 @@ Click Save Button
 
 Click Delete Button
     Click Button    id: delete_btn
-
-# Click Delete Button To Confirm
-#     Click Button    id: delete_btn

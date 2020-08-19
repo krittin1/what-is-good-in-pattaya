@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="LogsCollection Copy" tests="36" time="3.166">
+  <testsuite name="/logs?userId={{userId}}" id="12e3f771-0387-48f8-8159-507445a49aee" timestamp="2020-08-19T10:37:03.198Z" tests="5" failures="0" errors="0" time="0.098">
+    <testcase name="Status code is 200" time="0.071" classname="LogsCollectionCopy"/>
+    <testcase name="Test that all types are correct" time="0.071" classname="LogsCollectionCopy"/>
+    <testcase name="Logs per page must be the same of the logs array length" time="0.071" classname="LogsCollectionCopy"/>
+    <testcase name="If There is a userId, the logs must contain only that userId" time="0.071" classname="LogsCollectionCopy"/>
+    <testcase name="Logs returned by the server must be sorted chronologically" time="0.071" classname="LogsCollectionCopy"/>
+  </testsuite>
+  <testsuite name="add  user /user" id="55398ae7-67a7-49d3-a46f-42784cc4b6b6" timestamp="2020-08-19T10:37:03.198Z" tests="2" failures="0" errors="0" time="0.088">
+    <testcase name="Status code is 201" time="0.084" classname="LogsCollectionCopy"/>
+    <testcase name="Body is correct" time="0.084" classname="LogsCollectionCopy"/>
+  </testsuite>
+  <testsuite name="update data" id="539866fd-7d8d-418f-9bc2-d0b14503176c" timestamp="2020-08-19T10:37:03.198Z" tests="2" failures="0" errors="0" time="0.079">
+    <testcase name="Status code is 200" time="0.080" classname="LogsCollectionCopy"/>
+    <testcase name="Body is correct" time="0.080" classname="LogsCollectionCopy"/>
+  </testsuite>
+  <testsuite name="delete user" id="3fe37a06-b7ee-49d0-b06a-eeacf488c926" timestamp="2020-08-19T10:37:03.198Z" tests="2" failures="0" errors="0" time="0.087">
+    <testcase name="Status code is 200" time="0.079" classname="LogsCollectionCopy"/>
+    <testcase name="Body is correct" time="0.079" classname="LogsCollectionCopy"/>
+  </testsuite>
+</testsuites>

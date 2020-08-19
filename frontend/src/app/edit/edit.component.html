@@ -102,18 +102,102 @@
                   </form>
             </div>
         </mat-card>
+        
+        <mat-card>
+        <div>  
+<form>  
+        <p>
 
+            <mat-form-field appearance="fill" class="drop-down-postion">
+              <mat-label id="position"
+                >Select your position (required)</mat-label
+              >
+              <select
+                matNativeControl
+                required
+                formControlName="position"
+                id="position"
+              >
+                <option label="-- Position --"></option>
+                <option value="Junior Frontend Developer"
+                  >Junior Frontend Developer</option
+                >
+                <option value="Junior Backend Developer"
+                  >Junior Backend Developer</option
+                >
+                <option value="Junior Quality Assurance"
+                  >Junior Quality Assurance</option
+                >
+              </select>
+              <mat-error *ngIf="selectFormControl.hasError('required')">
+                This field is required
+              </mat-error>
+              <mat-hint>You can pick up your position here</mat-hint>
+            </mat-form-field>
+          </p>
 
-        <div class="edit-component">
-            <button class="edit-btn" (click)="updateUser()" mat-raised-button color="primary" id="edit_btn">
-                Save
-            </button>
+          <mat-form-field class="example-full-width">
+            <mat-label>Telephone</mat-label>
+            <span matPrefix>+66 &nbsp;</span>
+            <input
+              id="phone_number"
+              matInput
+              placeholder=""
+              formControlName="phoneNumber"
+            />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+          </mat-form-field>
 
-            <button class="cancel-btn" routerLink="/menu" mat-raised-button>
-                Cancel
-            </button>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Province</mat-label>
+              <textarea
+                matInput
+                id="address"
+                formControlName="address"
+              ></textarea>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Postcode</mat-label>
+              <textarea
+                matInput
+                id="post_code"
+                formControlName="postcode"
+              ></textarea>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="example-full-width">
+              <mat-label>Start date</mat-label>
+              <textarea
+                matInput
+                id="start_date"
+                formControlName="startDate"
+              ></textarea>
+            </mat-form-field>
+          </p>
+        </form>
+      </div>
+    </mat-card>
 
-            <!-- <mat-label>
+    <div class="edit-component">
+      <button
+        class="edit-btn"
+        (click)="updateUser()"
+        mat-raised-button
+        color="primary"
+        id="edit_btn"
+      >
+        Save
+      </button>
+
+      <button class="cancel-btn" routerLink="/menu" mat-raised-button>
+        Cancel
+      </button>
+
+      <!-- <mat-label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 or
             </mat-label>
@@ -122,7 +206,7 @@
                 Delete
             </button> -->
 
-            <!-- <button 
+      <!-- <button 
          type="button" 
          class="delete-btn" 
          routerLink="/history"
@@ -133,7 +217,6 @@
           id= "delete_btn">
          Delete
         </button>  -->
-
-        </div>
     </div>
+  </div>
 </div>
