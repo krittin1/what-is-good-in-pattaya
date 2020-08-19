@@ -34,10 +34,8 @@ export class EditComponent implements OnInit {
 
   ngOnInit(): void {
     // this.service.getUserById('251170').subscribe((res)=>{
-
     // })
-   }
-
+  }
 
   imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
 
@@ -66,23 +64,10 @@ export class EditComponent implements OnInit {
     );
 
     console.log(this.form);
-    
+
     this.service.updateUser(this.form).subscribe((data) => {
       this.router.navigateByUrl('/history');
       console.log(data);
     });
   }
-
-  deleteUser() {
-    this.service.deleteUser('251170').subscribe((res) => {
-      this.router.navigateByUrl('/history');
-    });
-  }
-  // updateUser(){
-
-  //   this.service.updateUser('JirapornKan').subscribe((res) => {
-
-  //     this.router.navigateByUrl('/history');
-  // })
-  // }
 }
