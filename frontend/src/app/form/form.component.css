@@ -39,3 +39,17 @@ h2 {
   margin-left: 300px;
   margin-top: 20px;
 }
+
+
+.drop-down-postion{
+  min-width: 100%;
+}
+
+.submit-btn{
+  margin-left: 10px;
+}
+
+
+.cancel-btn{
+  margin-left: 85px;
+}

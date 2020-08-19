@@ -7,16 +7,19 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Form } from '../models/form';
 import { Object } from '../models/object';
-
+import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
+
   form: Form;
   object: Object;
 
+  selectFormControl = new FormControl('', Validators.required);
+  
   public addForm = new FormGroup({
     userId: new FormControl(),
     name: new FormControl(),
@@ -59,12 +62,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void { }
-  imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
+  imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule, MatSelectModule, FormControl];
 }
 
-// export class InputErrorsExample {
-//   emailFormControl = new FormControl('', [
-//     Validators.required,
-//     Validators.email,
-//   ]);
-// }
