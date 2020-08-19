@@ -160,6 +160,59 @@
 			"response": []
 		},
 		{
+			"name": "update data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "025a43e6-b859-4b8f-af09-0d32ee078d38",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(`Change [last name, postcode, position] of user ${data[\"userId\"]}`);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\": \"{{update_message}}\",\r\n    \"adminId\": \"{{update_adminId}}\",\r\n    \"adminUser\": \"{{update_adminUser}}\",\r\n    \"object\": {\r\n        \"action\": null,\r\n        \"userId\": \"{{userId}}\",\r\n        \"name\": null,\r\n        \"surname\": \"{{update_surname}}\",\r\n        \"idCard\": null,\r\n        \"postcode\": \"{{update_postcode}}\",\r\n        \"dateOfBirth\": null,\r\n        \"position\": \"{{update_position}}\",\r\n        \"startDate\": null,\r\n        \"phoneNumber\": null,\r\n        \"address\": null\r\n    },\r\n    \"timestamp\": \"{{timestamp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://159.65.129.76:8080/api/v1/user",
+					"protocol": "http",
+					"host": [
+						"159",
+						"65",
+						"129",
+						"76"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "delete user",
 			"event": [
 				{
@@ -184,8 +237,17 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\": \"{{update_message}}\",\r\n    \"adminId\": \"{{update_adminId}}\",\r\n    \"adminUser\": \"{{update_adminUser}}\",\r\n    \"object\": {\r\n        \"action\": null,\r\n        \"userId\": \"{{userId}}\",\r\n        \"name\": null,\r\n        \"surname\": \"{{update_surname}}\",\r\n        \"idCard\": null,\r\n        \"postcode\": \"{{update_postcode}}\",\r\n        \"dateOfBirth\": null,\r\n        \"position\": \"{{update_position}}\",\r\n        \"startDate\": null,\r\n        \"phoneNumber\": null,\r\n        \"address\": null\r\n    },\r\n    \"timestamp\": \"{{timestamp}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://159.65.129.76:8080/api/v1/user/3423332",
+					"raw": "http://159.65.129.76:8080/api/v1/user/{{userId}}",
 					"protocol": "http",
 					"host": [
 						"159",
@@ -198,58 +260,7 @@
 						"api",
 						"v1",
 						"user",
-						"3423332"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update data",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "025a43e6-b859-4b8f-af09-0d32ee078d38",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"pm.test(\"Body is correct\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.message).to.eql(`${data[\"userId\"]} user updated`);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://159.65.129.76:8080/api/v1/user",
-					"protocol": "http",
-					"host": [
-						"159",
-						"65",
-						"129",
-						"76"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"user"
+						"{{userId}}"
 					]
 				}
 			},
