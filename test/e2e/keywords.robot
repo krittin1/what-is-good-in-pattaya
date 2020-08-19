@@ -95,8 +95,6 @@ Edit Employee's Info
     [Arguments]    ${SURNAME}    ${MESSAGE}
     Clear Element Text    id: lastname    
     Input Text    id: lastname    ${SURNAME}
-    Clear Element Text    id: message
-    Input Text    id: message    ${MESSAGE}
 
 Click Save Button
     Click Button    id: save_btn
