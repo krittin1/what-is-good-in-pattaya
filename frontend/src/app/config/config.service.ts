@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Form } from '../models/form';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
-  // url = 'http://159.65.129.76:8080/api/v1/user'
-  url = 'http://localhost:8080/api/v1/user'
+  url = `${environment.apiUrl}/api/v1/user`;
 
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   addForm(employee: any): Observable<HttpResponse<Form>> {
     return this.http.post<Form>(this.url, employee, { observe: 'response' });
@@ -28,5 +26,4 @@ export class ConfigService {
   updateUser(employee: any): Observable<HttpResponse<Form>> {
     return this.http.put<Form>(this.url + '/' , employee, { observe: 'response' });
   }
-
 }
