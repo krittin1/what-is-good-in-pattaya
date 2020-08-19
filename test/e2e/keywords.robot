@@ -31,13 +31,13 @@ Delete Employee's Information
     Click Login Button
     Change To Action Page
     Click Delete Button
-    Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
-    Click Delete Button To Confirm
+    # Check If Employee's Info Appears    ${USER_ID}    ${NAME}    ${ID_CARD}    ${SURNAME}
+    # Click Delete Button To Confirm
     Change To History Page    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     Close Form Browser
 
 Open Form Browser Using Google Chrome
-    Open Browser    ${URL}    chrome
+    Open Browser    ${URL}    chrome    remote_url=http://206.189.154.4:4444/wd/hub desired_capabilities=browserName:chrome
 
 Close Form Browser
     Close Browser
@@ -73,7 +73,7 @@ Click Submit Button
 Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     # Table Should Contain    id: table_history    ${MESSAGE}
-    Wait Until Page Contains    User History
+    # Wait Until Page Contains    251195
     Table Cell Should Contain    id: table_history1    2    1    ${ADMIN_ID}  
     Table Cell Should Contain    id: table_history1    2    2    ${ACTION}
     Table Cell Should Contain    id: table_history1    2    3    ${NAME}    ${SURNAME}
@@ -100,5 +100,5 @@ Click Save Button
 Click Delete Button
     Click Button    id: delete_btn
 
-Click Delete Button To Confirm
-    Click Button    id: delete_btn
+# Click Delete Button To Confirm
+#     Click Button    id: delete_btn
