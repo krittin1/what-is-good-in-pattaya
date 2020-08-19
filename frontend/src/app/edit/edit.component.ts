@@ -12,7 +12,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
   form: Form;
@@ -30,23 +30,16 @@ export class EditComponent implements OnInit {
     phoneNumber: new FormControl('0824933423'),
     address: new FormControl('Bangkok'),
   });
-  constructor(private service: ConfigService, private router: Router) { }
+  constructor(private service: ConfigService, private router: Router) {}
 
   ngOnInit(): void {
-    this.service.getUserById('JirapornKan').subscribe((res)=>{
+    this.service.getUserById('JirapornKan').subscribe((res) => {});
+  }
 
-    })
-   }
-
-
-  imports: [
-    MatInputModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatCardModule
-  ];
+  imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
 
   updateUser() {
+    const currentDate = new Date();
     this.form = new Form(
       'New Employee added',
       '251195',
@@ -64,12 +57,12 @@ export class EditComponent implements OnInit {
         this.editForm.get('phoneNumber').value,
         this.editForm.get('address').value
       ),
-      "a few minute ago."
+      currentDate.toUTCString()
     );
-    
+
     console.log(this.form);
-    
-    this.service.updateUser(this.form,'JirapornKan').subscribe((data) => {
+
+    this.service.updateUser(this.form, 'JirapornKan').subscribe((data) => {
       this.router.navigateByUrl('/history');
       console.log(data);
     });
@@ -78,10 +71,10 @@ export class EditComponent implements OnInit {
   deleteUser() {
     this.service.deleteUser('JirapornKan').subscribe((res) => {
       this.router.navigateByUrl('/history');
-    })
+    });
   }
   // updateUser(){
-    
+
   //   this.service.updateUser('JirapornKan').subscribe((res) => {
 
   //     this.router.navigateByUrl('/history');
