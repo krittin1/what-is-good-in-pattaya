@@ -113,7 +113,7 @@ public class LogController {
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
-        if ("TERMINATED".equals(employee.getStatus())) {
+        if ("DELETED".equals(employee.getStatus())) {
 //            throw new DoubleTerminatedEmployeeException("Employee whose id is " + id + " is already terminated");
             isDeleted = true;
         }

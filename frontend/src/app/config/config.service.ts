@@ -6,6 +6,7 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Form } from '../models/form';
+import { UserResponse } from '../models/userResponse';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -31,6 +32,10 @@ export class ConfigService {
         .set('adminId', adminId)
         .set('timestamp', timestamp),
     });
+  }
+
+  getAllUsers(): Observable<UserResponse[]> {
+    return this.http.get<UserResponse[]>(this.url + 's/');
   }
 
   getUserById(userId: String): Observable<Form> {
