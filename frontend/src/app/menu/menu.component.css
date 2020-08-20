@@ -65,7 +65,20 @@ section {
     width: 120px;
 }
 
-.menu-btn {
+.menu-btn-add {
+    width: 100%;
+    background-color: #00008b;
+
+}
+.menu-btn-edit{
+    width: 100%;
+    background-color: #daa520;
+}
+.menu-btn-delete{
+    width: 100%;
+    background-color: #db162fff;
+}
+.menu-btn-history{
     width: 100%;
 }
 
