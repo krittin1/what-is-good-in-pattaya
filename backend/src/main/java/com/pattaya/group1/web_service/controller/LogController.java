@@ -107,19 +107,19 @@ public class LogController {
 
     @DeleteMapping("/user/{id}")
     public ResponseEntity<Map<String, String>> deleteUser(@PathVariable String id, @RequestParam String adminId, @RequestParam String timestamp) {
-        logger.info("Terminate => user " + id);
+        logger.info("Delete => user " + id);
         Employee employee = employeeRepository.findByUserId(id);
-        boolean isTerminated = false;
+        boolean isDeleted = false;
         if (employee == null) {
             throw new EmployeeNotFound("Cannot find the user whose id is `" + id + "` in the database.");
         }
         if ("TERMINATED".equals(employee.getStatus())) {
 //            throw new DoubleTerminatedEmployeeException("Employee whose id is " + id + " is already terminated");
-            isTerminated = true;
+            isDeleted = true;
         }
-        employee.setStatus("TERMINATED");
+        employee.setStatus("DELETED");
         employeeRepository.save(employee);
-        ChangeLog changeLog = new ChangeLog.Builder().withUserId(id).withAction("Terminated").withAdminId(adminId).withMessage("Terminated user " + id + ((isTerminated) ? " again" : "")).withTimestamp(timestamp).build();
+        ChangeLog changeLog = new ChangeLog.Builder().withUserId(id).withAction("Deleted").withAdminId(adminId).withMessage("Deleted user " + id + ((isDeleted) ? " again" : "")).withTimestamp(timestamp).build();
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user deleted", employee.getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
