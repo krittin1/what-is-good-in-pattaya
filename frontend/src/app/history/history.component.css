@@ -1,25 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
 table {
-  width: 100%;
+    width: 100%;
 }
 
 .mat-form-field {
-  font-size: 14px;
-  width: 100%;
+    font-size: 14px;
+    width: 100%;
 }
 
 td,
 th {
-  width: 5%;
+    width: 5%;
 }
 
 h2 {
-  color: navy;
-
-  font-family: "Comfortaa", cursive;
+    color: navy;
+    font-family: "Comfortaa", cursive;
 }
 
 ::ng-deep .mat-sort-header-arrow {
-  transform: none !important;
-  opacity: 1 !important;
+    transform: none !important;
+    opacity: 1 !important;
 }
