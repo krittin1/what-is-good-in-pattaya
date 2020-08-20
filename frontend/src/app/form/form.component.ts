@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatCardModule } from '@angular/material/card';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ConfigService } from '../config/config.service';
 import { Form } from '../models/form';
 import { Object } from '../models/object';
-import { MatSelectModule } from '@angular/material/select';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -20,17 +17,6 @@ export class FormComponent implements OnInit {
   selectFormControl = new FormControl('', Validators.required);
 
   public addForm = new FormGroup({
-    // userId: new FormControl('251161'),
-    // name: new FormControl('Veeraphat'),
-    // surname: new FormControl('Amornsirikul'),
-    // idCard: new FormControl('1111111111111'),
-    // postcode: new FormControl('10200'),
-    // dateOfBirth: new FormControl('11/10/1997'),
-    // position: new FormControl('Junior Backend Develope'),
-    // startDate: new FormControl('01/07/2020'),
-    // phoneNumber: new FormControl('0953569497'),
-    // address: new FormControl('Bangkok'),
-
     userId: new FormControl(),
     name: new FormControl(),
     surname: new FormControl(),
@@ -43,7 +29,7 @@ export class FormComponent implements OnInit {
     address: new FormControl(),
   });
 
-  constructor(private service: ConfigService) { }
+  constructor(private service: ConfigService, private router: Router) {}
 
   debug() {
     const currentDate = new Date();
@@ -67,18 +53,10 @@ export class FormComponent implements OnInit {
       currentDate.toUTCString()
     );
     console.log(this.form);
-    this.service.addForm(this.form).subscribe((data) => {
-      console.log(data);
+    this.service.addForm(this.form).subscribe(() => {
+      this.router.navigateByUrl('/history');
     });
   }
 
-  ngOnInit(): void { }
-  imports: [
-    MatInputModule,
-    MatIconModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatSelectModule,
-    FormControl
-  ];
+  ngOnInit(): void {}
 }
