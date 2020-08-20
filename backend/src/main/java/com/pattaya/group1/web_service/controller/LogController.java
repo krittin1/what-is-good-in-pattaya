@@ -44,7 +44,7 @@ public class LogController {
         }
         employee = buildEmployeeOnLog(log);
         employeeRepository.save(employee);
-        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Add user " + log.getObject().getUserId() + ((addedAgain) ? " again." : ""));
+        ChangeLog changeLog = buildChangeLogOnLog(log, "Added", "Added user " + log.getObject().getUserId() + ((addedAgain) ? " again." : ""));
         changeLogRepository.save(changeLog);
         Map<String, String> map = Stream.of(
                 new AbstractMap.SimpleEntry<>("message", String.format("%s user added", log.getObject().getUserId()))).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
@@ -94,7 +94,7 @@ public class LogController {
         employeeRepository.save(employee);
 
         ChangeLog changeLog = buildChangeLogOnLog(log, "Edited", String.format(
-                "Change %s of user %s", changes.toString(), log.getObject().getUserId())
+                "Changed %s of user %s", changes.toString(), log.getObject().getUserId())
         );
         // Create new Log
         changeLogRepository.save(changeLog);
