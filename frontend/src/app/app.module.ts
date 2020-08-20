@@ -49,6 +49,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserComponent } from './user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +61,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HistoryComponent,
     FormComponent,
     SubmitComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

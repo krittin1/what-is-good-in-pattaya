@@ -9,12 +9,14 @@ import { EditComponent } from './edit/edit.component';
 import { HistoryComponent } from './history/history.component';
 import { FormComponent } from './form/form.component';
 import { SubmitComponent } from './submit/submit.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: 'nav', component: NavComponent },
   { path: 'login', component: LoginComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'edit', component: EditComponent },
+  { path: 'users', component: UserComponent },
   { path: 'form', component: FormComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'submit', component: SubmitComponent },
