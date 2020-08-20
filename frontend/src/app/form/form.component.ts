@@ -43,7 +43,7 @@ export class FormComponent implements OnInit {
     address: new FormControl(),
   });
 
-  constructor(private service: ConfigService) {}
+  constructor(private service: ConfigService) { }
 
   debug() {
     const currentDate = new Date();
@@ -72,7 +72,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   imports: [
     MatInputModule,
     MatIconModule,
