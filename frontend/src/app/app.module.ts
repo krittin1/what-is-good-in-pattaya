@@ -39,6 +39,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { MatSelectModule } from '@angular/material/select';
+
+import { MatToolbarModule, } from '@angular/material/toolbar';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatListModule} from '@angular/material/list';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
+
 import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
@@ -70,6 +79,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     MatSelectModule,
     HttpClientModule,
+  
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    FlexLayoutModule,
   ],
 
   providers: [

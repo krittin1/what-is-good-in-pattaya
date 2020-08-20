@@ -1,6 +1,6 @@
 *** Variables ***
-# ${URL}    http://localhost:4200/#/login
-${URL}    http://159.65.131.126/#/login
+${URL}    http://localhost:4200/#/login
+# ${URL}    http://159.65.131.126/#/login
 *** Keywords ***
 Add New Employee
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${ACTION}    ${USER_ID}    ${FORM_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}    ${DATE_OF_BIRTH}    ${POSITION}    ${PHONE_NUMBER}    ${ADDRESS}    ${START_DATE}    ${POST_CODE}    ${ID_CARD}
