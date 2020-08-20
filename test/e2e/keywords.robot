@@ -1,5 +1,5 @@
 *** Variables ***
-# ${URL}    http://localhost:4200/#/login
+#${URL}    http://localhost:4200/#/login
 ${URL}    http://159.65.131.126/#/login
 *** Keywords ***
 Add New Employee
@@ -71,7 +71,7 @@ Click Submit Button
 Change To History Page
     [Arguments]    ${MESSAGE}    ${ADMIN_ID}    ${ADMIN_USER}    ${FORM_ID}    ${ACTION}    ${USER_ID}    ${NAME}    ${SURNAME}    ${TIMESTAMP}
     # Table Should Contain    id: table_history    ${MESSAGE}
-    # Wait Until Page Contains    251195
+    Wait Until Page Contains     ${ADMIN_ID}
     Table Cell Should Contain    id: table_history1    2    1    ${ADMIN_ID}  
     Table Cell Should Contain    id: table_history1    2    2    ${ACTION}
     Table Cell Should Contain    id: table_history1    2    3    ${NAME}    ${SURNAME}

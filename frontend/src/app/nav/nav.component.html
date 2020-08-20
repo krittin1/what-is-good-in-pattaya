@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -19,4 +19,58 @@
       </li>
     </ul>
   </div>
-</nav>
+</nav> -->
+
+<!-- <img id="project-avatar" (click)="toggleNavbar()" width=20, height=20 style="position: relative;" alt="Show Hide Navigation Menu" src="https://cdn.onlinewebfonts.com/svg/img_417157.png" /> -->
+
+<div [style.visibility]="displayNavbar == '1' ? 'visible' : 'hidden'">
+  <!-- (click)="sidenav.toggle()" -->
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        fxShow="true"
+        fxHide.gt-sm
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <img
+        routerLink="/menu"
+        id="home"
+        src="https://raw.githubusercontent.com/krittin1/my-storage/master/azform.png?token=AGJ244KU4HEJGFHN5IRA4MK7IAQ56"
+        style="height: 55px; width: px65; margin-left: 55px;"
+      />
+
+      <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+          <li class="label-li">
+            <a>Hi, Chatchanok</a>
+          </li>
+          <li>
+            <img
+              class="ui right spaced avatar image"
+              src="https://raw.githubusercontent.com/krittin1/my-storage/master/mycat.jpg?token=AGJ244MF22CRHJBKVT65XPK7H6GB4"
+            />
+          </li>
+        </ul>
+      </div>
+
+      <span class="nav-css"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <a href="#/form" mat-list-item>Add</a>
+        <a href="#/edit" mat-list-item>Edit</a>
+        <a href="#/menu" mat-list-item>Delete</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

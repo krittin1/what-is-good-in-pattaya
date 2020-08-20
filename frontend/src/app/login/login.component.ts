@@ -9,9 +9,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   imports: [MatButtonModule, MatCardModule, MatGridListModule];
 }

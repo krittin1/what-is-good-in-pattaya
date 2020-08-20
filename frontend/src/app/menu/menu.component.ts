@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent implements OnInit {
-  constructor(private configService: ConfigService, private router: Router) {}
+  constructor(private configService: ConfigService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   deleteUser() {
     this.configService

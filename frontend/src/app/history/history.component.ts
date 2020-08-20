@@ -36,7 +36,7 @@ export class HistoryComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(public service: FormService) {}
+  constructor(public service: FormService) { }
 
   ngOnInit(): void {
     this.getAll();

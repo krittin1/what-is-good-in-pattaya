@@ -1,71 +1,95 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
 .parent {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  margin-top: -50px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    margin-top: 0px;
 }
 
 .div1 {
-  grid-area: 1 / 1 / 7 / 7;
+    grid-area: 1 / 1 / 7 / 7;
 }
+
 .div2 {
-  grid-area: 2 / 3 / 6 / 5;
+    grid-area: 2 / 3 / 6 / 5;
 }
+
 .div3 {
-  grid-area: 2 / 3 / 3 / 5;
+    grid-area: 2 / 3 / 3 / 5;
 }
+
 .div4 {
-  grid-area: 3 / 3 / 4 / 5;
+    grid-area: 3 / 3 / 4 / 5;
 }
+
 .div5 {
-  grid-area: 4 / 3 / 5 / 5;
+    grid-area: 4 / 3 / 5 / 5;
 }
+
 .div6 {
-  grid-area: 5 / 3 / 6 / 5;
+    grid-area: 5 / 3 / 6 / 5;
 }
 
 section {
-  display: table;
+    display: table;
 }
 
 .example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
 }
 
 .example-button-row {
-  display: table-cell;
-  width: 490px;
-  text-align: center;
+    display: table-cell;
+    width: 490px;
+    text-align: center;
 }
 
 .example-button-row .mat-button-base {
-  margin: 8px 8px 8px 0;
+    margin: 8px 8px 8px 0;
 }
 
 .example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
+    display: flex;
+    justify-content: center;
+    width: 120px;
 }
 
-.menu-btn {
-  width: 100%;
+.menu-btn-add {
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #003781;
+}
+
+.menu-btn-edit {
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #ffa510;
+}
+
+.menu-btn-delete {
+    width: 100%;
+    color: #ffffff;
+    background-color: #616f80;
+}
+
+.menu-btn-history {
+    width: 100%;
+    background-color: #003781;
+    color: #ffffff;
 }
 
 h2 {
-  color: navy;
-
-  font-family: "Comfortaa", cursive;
+    color: navy;
+    font-family: "Comfortaa", cursive;
 }
