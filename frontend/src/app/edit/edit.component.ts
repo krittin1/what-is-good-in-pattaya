@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatCardModule } from '@angular/material/card';
 import { Form } from '../models/form';
 import { Object } from '../models/object';
 import { ConfigService } from '../config/config.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
 
 @Component({
   selector: 'app-edit',
@@ -19,28 +14,25 @@ export class EditComponent implements OnInit {
   form: Form;
   object: Object;
 
-  public updateForm = new FormGroup({
-    userId: new FormControl('251161'),
-    name: new FormControl('Veeraphat'),
-    surname: new FormControl('Amornsirikul'),
-    idCard: new FormControl('1111111111111'),
-    postcode: new FormControl('10200'),
-    dateOfBirth: new FormControl('11/10/1997'),
-    position: new FormControl('Junior Backend Developer'),
-    startDate: new FormControl('MatNativeDateModule'),
-    phoneNumber: new FormControl('0953569497'),
-    address: new FormControl('Bangkok'),
-  });
+  updateForm: FormGroup;
+  selectFormControl = new FormControl('', Validators.required);
+
   constructor(private service: ConfigService, private router: Router) {}
 
   ngOnInit(): void {
-    // this.service.getUserById('251170').subscribe((res)=>{
-    // })
+    this.updateForm = new FormGroup({
+      userId: new FormControl('251161'),
+      name: new FormControl('Veeraphat'),
+      surname: new FormControl('Amornsirikul'),
+      idCard: new FormControl('1111111111111'),
+      postcode: new FormControl('10200'),
+      dateOfBirth: new FormControl('11/10/1997'),
+      position: new FormControl('Junior Backend Developer'),
+      startDate: new FormControl('MatNativeDateModule'),
+      phoneNumber: new FormControl('0953569497'),
+      address: new FormControl('Bangkok'),
+    });
   }
-
-  imports: [MatInputModule, MatIconModule, MatDatepickerModule, MatCardModule];
-
-  selectFormControl = new FormControl('', Validators.required);
 
   updateUser() {
     const currentDate = new Date();
