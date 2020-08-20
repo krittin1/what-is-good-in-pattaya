@@ -26,9 +26,9 @@ export class EditComponent implements OnInit {
       surname: new FormControl('Amornsirikul'),
       idCard: new FormControl('1111111111111'),
       postcode: new FormControl('10200'),
-      dateOfBirth: new FormControl('11/10/1997'),
+      dateOfBirth: new FormControl('1997-11-10T00:00:00.000Z'),
       position: new FormControl('Junior Backend Developer'),
-      startDate: new FormControl('MatNativeDateModule'),
+      startDate: new FormControl('2020-01-07T00:00:00.000Z'),
       phoneNumber: new FormControl('0953569497'),
       address: new FormControl('Bangkok'),
     });
