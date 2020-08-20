@@ -8,7 +8,7 @@
                 <form class="example-form" [formGroup]="addForm">
                     <mat-form-field class="example-full-width">
                         <mat-label>Allianz Technology (Thailand) Co. Ltd.</mat-label>
-                        <input matInput disabled value="Add Form" />
+                        <input matInput disabled value="" />
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <mat-label>User ID</mat-label>
@@ -58,15 +58,9 @@
                             <mat-label id="position">Select your position </mat-label>
                             <select matNativeControl required formControlName="position" id="position">
                 <option label="-- Position --"></option>
-                <option value="Junior Frontend Develope"
-                  >Junior Frontend Developer</option
-                >
-                <option value="Junior Backend Developer"
-                  >Junior Backend Developer</option
-                >
-                <option value="Junior Quality Assurance"
-                  >Junior Quality Assurance</option
-                >
+                <option value="Junior Frontend Develope">Junior Frontend Developer</option>
+                <option value="Junior Backend Developer">Junior Backend Developer</option>
+                <option value="Junior Quality Assurance">Junior Quality Assurance</option>
               </select>
                             <mat-error *ngIf="selectFormControl.hasError('required')">
                                 This field is required
