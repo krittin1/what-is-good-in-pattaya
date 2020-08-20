@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatToolbarModule, } from '@angular/material/toolbar';
-import { MatSidenavModule} from '@angular/material/sidenav';
-import { MatListModule} from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -23,17 +23,17 @@ export class NavComponent implements OnInit {
 
   toggleNavbar() {
 
-    if(this.displayNavbar == '0') {
-        this.displayNavbar = '1';
+    if (this.displayNavbar == '0') {
+      this.displayNavbar = '1';
       //  alert(this.displayNavbar);
-    } if(this.displayNavbar == '1') {
-    //    alert("1 - Changing to 0");
-        this.displayNavbar = '0';
+    } if (this.displayNavbar == '1') {
+      //    alert("1 - Changing to 0");
+      this.displayNavbar = '0';
     } else {
-        this.displayNavbar = '1';
+      this.displayNavbar = '1';
     }
 
-    
+
   }
   imports: [
     MatToolbarModule,
