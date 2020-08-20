@@ -31,7 +31,7 @@ export class EditComponent implements OnInit {
     phoneNumber: new FormControl('0953569497'),
     address: new FormControl('Bangkok'),
   });
-  constructor(private service: ConfigService, private router: Router) {}
+  constructor(private service: ConfigService, private router: Router) { }
 
   ngOnInit(): void {
     // this.service.getUserById('251170').subscribe((res)=>{
